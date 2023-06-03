@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Selection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+
+    
+<form>
+<h3>Select your Choice</h3>
+
+<button type="button" onclick="redirectToEmployerLogin()">
+    Find a Worker
+</button>
+
+<button type="button" onclick="redirectToJobSeekerLogin()">
+    Find a Job
+</button>
+
+   
+</form>
+    
+<script>
+    function redirectToEmployerLogin() {
+        window.location.href = 'employerlogin.php';
+    }
+    function redirectToJobSeekerLogin() {
+            window.location.href = 'jobseekerlogin.php';
+        }
+</script>
+
+</body>
+
+</html>

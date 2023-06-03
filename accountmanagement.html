@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Account Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+ 
+
+    <form>
+        <h3>Account Management</h3>
+        <label for="name">Name:</label>
+        <input type="text" id="name" value="John">
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" value="Doe">
+
+        <label for="birthdate">Birth Date:</label>
+        <input type="date" id="birthdate" value="1990-01-01">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" value="john@example.com">
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" value="555-1234">
+
+        <div class="gender-container">
+            <label for="gender"> Gender : </label>
+            <label for="gender-male">Male</label>
+            <input type="radio" id="gender-male" name="gender" value="male">
+        
+            <label for="gender-female">Female</label>
+            <input type="radio" id="gender-female" name="gender" value="female">
+        </div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter new password">
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" placeholder="Confirm new password">
+
+        <label for="city">City:</label>
+        <input type="text" id="city" value="New York">
+
+        <label for="district">District:</label>
+        <input type="text" id="district" value="Manhattan">
+
+        <label for="other">Other Address:</label>
+        <textarea id="other" name="other" rows="4" cols="30"></textarea>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <script>
+        // Add any necessary JavaScript code here
+    </script>
+</body>
+
+</html>

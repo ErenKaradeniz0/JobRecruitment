@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Manage Job Applications</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+  
+
+    <table>
+        <tr>
+            <td colspan="6"><button style="margin-top:0px ;" type="button" onclick="redirectToEmployer()">Go employer
+                    page</button></td>
+        </tr>
+        <tr>
+            <td colspan="6"><h3>Manage Job Applications</h3></td>
+        </tr>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Date Applied</th>
+            <th>Resume</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>Applicant 1</td>
+            <td>Job Title 1</td>
+            <td>Company 1</td>
+            <td>2023-06-01</td>
+            <td><a href="resume1.pdf">Download</a></td>
+            <td>
+                <a href="view-application.php?id=1">View</a> |
+                <a href="delete-application.php?id=1">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Applicant 2</td>
+            <td>Job Title 2</td>
+            <td>Company 2</td>
+            <td>2023-06-02</td>
+            <td><a href="resume2.pdf">Download</a></td>
+            <td>
+                <a href="view-application.php?id=2">View</a> |
+                <a href="delete-application.php?id=2">Delete</a>
+            </td>
+        </tr>
+        <!-- Add more job applications here -->
+    </table>
+
+            <script>
+                function redirectToEmployer() {
+                    window.location.href = 'employer.html';
+                }
+            </script>
+</body>
+
+</html>
