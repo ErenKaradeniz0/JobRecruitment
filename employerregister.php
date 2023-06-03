@@ -75,10 +75,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="address-container">
             <label for="city">City</label>
-            <input type="text" id="city" name="city" placeholder="Adana" name="city" required>
+            <select name="city" id="city"> <!-- fontblack-->
+                <option selected="selected" value="0" style="color:black;">Select to City</option> <!-- fontblack-->
+                <?php include "get_cities.php";?>
+            </select>
             
             <label for="district">District</label>
-            <input type="text" id="district" name="district" placeholder="Çukurova" name="district" required>
+            <select name="district" id="district"> <!-- fontblack-->
+                <option selected="selected" value="0" style="color:black;">Select to District</option> <!-- fontblack-->
+                <!-- District options will be populated dynamically using JavaScript -->
+            </select>
         </div>
         
         <label for="other">Other Address:</label>
@@ -97,3 +103,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+<script>
+    var citySelect = document.getElementById("city");
+    var districtSelect = document.getElementById("district");
+
+    // Event listener for the city select change
+    citySelect.addEventListener("change", function() {
+        
+        var cityId = citySelect.value;
+        // Clear existing options
+        districtSelect.innerHTML = "";
+
+        // AJAX request to fetch districts based on the selected city
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_districts.php?cityId=" + cityId, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var districts = JSON.parse(xhr.responseText);
+                districts.forEach(function(district) {
+                    var option = document.createElement("option");
+                    option.value = district.districtID;
+                    option.text = district.district_name;
+                    option.style.color="#000000"; //fontblack
+                    districtSelect.appendChild(option);
+                });
+            }
+        };
+        xhr.send();
+    });    
+</script>
