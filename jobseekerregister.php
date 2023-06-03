@@ -63,9 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
         </div>
 
-
-
-
         <label for="">Email</label>
         <input type="email" placeholder="Email" id="email" name="email" required>
 
