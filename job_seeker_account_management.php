@@ -64,8 +64,8 @@
     <textarea id="other" name="other_address" rows="4" cols="30"></textarea>
     
     <button>Save</button>
-    <button>Delete Account</button>
-    <button type="button" onclick="redirectToJobSeeker()">Go job seeker main page</button>
+    <button type="button" onclick="redirectToJobSeeker()">Main page</button>
+    <button style="background-color:red; color:white">Delete Account</button>
     
     
     </form>
