@@ -75,10 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="gender-container">
             <label for="gender"> Gender : </label>
-            <label for="gender-male">Male</label>
             <input type="radio" id="gender-male" name="gender" value="male">
-            <label for="gender-female">Female</label>
+            <label for="gender-male">Male</label>
             <input type="radio" id="gender-female" name="gender" value="female">
+            <label for="gender-female">Female</label>
         </div>
 
         <label for="">Phone</label>
@@ -89,14 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="address-container">
             <label for="city">City</label>
-            <select name="city" id="city" style="color:black;"> <!-- fontblack-->
+            <select name="city" id="city""> <!-- fontblack-->
                 <option selected="selected" value="0" style="color:black;">Select to City</option> <!-- fontblack-->
                 <?php include "get_cities.php";?>
             </select>
             
 
             <label for="district">District</label>
-            <select name="district" id="district" style="color:black;"> <!-- fontblack-->
+            <select name="district" id="district"> <!-- fontblack-->
                 <option selected="selected" value="0" style="color:black;">Select to District</option> <!-- fontblack-->
                 <!-- District options will be populated dynamically using JavaScript -->
             </select>

@@ -33,7 +33,7 @@
         </button>
 
 
-        <button type="button" onclick="redirectToHome()">Go home page</button>
+        <button type="button" onclick="redirectToHome()">Log out</button>
         
 
     </form>

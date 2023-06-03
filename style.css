@@ -37,8 +37,8 @@ body{
         #ff512f,
         #f09819
     );
-    right: -30px;
-    bottom: -80px;
+    right: -90px;
+    bottom: -150px;
 }
 
 form{
@@ -134,6 +134,16 @@ input {
 
 }
 
+select{
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding-left: 5%;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+}
 
 
 ::placeholder {
@@ -190,7 +200,7 @@ input[type= "radio"]{
     margin-right: 10px;
 }
 
-.address-container input,
+.address-container select,
 .name-container input {
     flex: 1;
 }
