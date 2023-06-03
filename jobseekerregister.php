@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
                         VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
         if(sqlsrv_query($conn,$reg)){
-            header("Location: info.php");
+            header("Location: jobseeker.php");
         }
         else
             echo "ERROR";
