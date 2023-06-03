@@ -63,6 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
         </div>
 
+
+
+
         <label for="">Email</label>
         <input type="email" placeholder="Email" id="email" name="email" required>
 
@@ -86,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="address-container">
             <label for="city">City</label>
-            <select name="city" id="city""> <!-- fontblack-->
+            <select name="city" id="city"> <!-- fontblack-->
                 <option selected="selected" value="0" style="color:black;">Select to City</option> <!-- fontblack-->
                 <?php include "get_cities.php";?>
             </select>
