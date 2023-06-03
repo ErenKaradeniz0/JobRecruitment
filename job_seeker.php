@@ -25,7 +25,7 @@
             window.location.href = 'job_seeker_account_management.php';
         }
         function redirectApply() {
-            window.location.href = 'jobseekerapply.php';
+            window.location.href = 'job_seeker_apply.php';
         }
 
         function redirectToHome() {

@@ -47,16 +47,15 @@
     
     <div class="address-container">
         <label for="city">City</label>
-        <select name="city" id="city""> <!-- fontblack-->
-                    <option selected=" selected" value="0" style="color:black;">Select to City</option> <!-- fontblack-->
+        <select name="city" id="city">
+                    <option selected=" selected" value="0" style="color:black;">Select to City</option>
             <?php include "get_cities.php";?>
         </select>
     
     
         <label for="district">District</label>
         <select name="district" id="district"> <!-- fontblack-->
-            <option selected="selected" value="0" style="color:black;">Select to District</option> <!-- fontblack-->
-            <!-- District options will be populated dynamically using JavaScript -->
+            <option selected="selected" value="0" style="color:black;">Select to District</option>
         </select>
     </div>
     
@@ -75,14 +74,13 @@
     var citySelect = document.getElementById("city");
     var districtSelect = document.getElementById("district");
 
-    // Event listener for the city select change
+
     citySelect.addEventListener("change", function () {
 
         var cityId = citySelect.value;
-        // Clear existing options
+
         districtSelect.innerHTML = "";
 
-        // AJAX request to fetch districts based on the selected city
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "get_districts.php?cityId=" + cityId, true);
         xhr.onreadystatechange = function () {
@@ -92,7 +90,7 @@
                     var option = document.createElement("option");
                     option.value = district.districtID;
                     option.text = district.district_name;
-                    option.style.color = "#000000"; //fontblack
+                    option.style.color = "#000000";
                     districtSelect.appendChild(option);
                 });
             }
@@ -103,7 +101,7 @@
 
         
     function redirectToJobSeeker() {
-        window.location.href = 'jobseeker.php';
+        window.location.href = 'job_seeker.php';
     }
 </script>
 </body>

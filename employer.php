@@ -40,14 +40,14 @@
 
     <script>
         function redirectToCreate() {
-            window.location.href = 'employercreate.html';
+            window.location.href = 'employer_create.html';
         }
         function redirectToManage() {
-            window.location.href = 'employermanage.html';
+            window.location.href = 'employer_manage.html';
         }
 
         function redirectToManageApplications() {
-                window.location.href = 'employermanageapplications.html';
+                window.location.href = 'employer_manage_applications.html';
             }
 
         function redirectToHome() {

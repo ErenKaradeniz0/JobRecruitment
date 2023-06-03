@@ -50,7 +50,7 @@
     <script>
         
         function redirectToJobSeeker() {
-            window.location.href = 'jobseeker.php';
+            window.location.href = 'job_seeker.php';
         }
     </script>
 </body>

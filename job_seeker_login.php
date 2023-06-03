@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM Companies WHERE email = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM Users WHERE email = '$username' AND password = '$password'";
     $stmt = sqlsrv_query($conn, $sql);
 
     if ($stmt === false) {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     if ($row) {
         $_SESSION["username"] = $row["username"];
-        header("Location: employer.php");
+        header("Location: job_seeker.php");
         exit();
     } else {
         $error = "Invalid username or password";
@@ -25,11 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Employer Login</title>
+    <title>Job Seeker Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -41,20 +42,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
     <form action="" method ="POST">
-        <button type = "button" onclick="redirectToHome()">Go home page</button>
-        <h3>Employer Login</h3>
-
-        <label for="username">Company</label>
+        <button type="button" onclick="redirectToHome()">Go home page</button>
+        <h3>Job Seeker Login</h3>
+    
+        <label for="username">Username</label>
         <input type="text" placeholder="Email" id="username" name="username" required>
-
+    
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password" required>
-
+    
         <button>Log In</button>
 
-        <h4>Don't have an account? <a href="employerregister.php">Sign up</a></h6>
-
+        <h4>Don't have an account? <a href="job_seeker_register.php">Sign up</a></h6>
+        
     </form>
+
+    <?php if (isset($error)) { echo "<p>$error</p>"; } ?>
 
     <script>
         function redirectToHome() {
