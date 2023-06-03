@@ -1,44 +1,3 @@
-<?php 
-
-require_once 'connect_db.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $surname = $_POST['surname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    @$gender = $_POST['gender'];
-    $phone = $_POST['phone'];
-    $birthdate=$_POST['birthdate'];
-    $city=$_POST['city'];
-    $district=$_POST['district'];
-    @$address=$_POST['other_address'];
-    
-    $sql = "SELECT * FROM Users WHERE email = '$email'";
-    $stmt = sqlsrv_query($conn, $sql);
-    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-    if($row)
-    {
-        echo "This email is already exist.";
-    }
-    else
-    {
-        $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
-                        VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
-        if(sqlsrv_query($conn,$reg)){
-            header("Location: jobseeker.php");
-        }
-        else
-            echo "ERROR";
-        
-    }
-
-    
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -76,8 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" placeholder="Password" id="password" name="password" required>
 
 
-
-
         <div class="gender-container">
             <label for="gender"> Gender : </label>
             <label for="gender-male">Male</label>
@@ -94,10 +51,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="address-container">
             <label for="city">City</label>
-            <input type="text" id="city" name="city" required>
+            <select name="cities" id="city" style="color:black;"> <!-- fontblack-->
+                <option selected="selected" value="0" style="color:black;">Select to City</option> <!-- fontblack-->
+                <?php include "get_cities.php";?>
+            </select>
+            
 
             <label for="district">District</label>
-            <input type="text" id="district" name="district" required>
+            <select name="districts" id="district" style="color:black;"> <!-- fontblack-->
+                <option selected="selected" value="0" style="color:black;">Select to District</option> <!-- fontblack-->
+                <!-- District options will be populated dynamically using JavaScript -->
+            </select>
         </div>
 
         <label for="other">Other Address:</label>
@@ -116,3 +80,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+<script>
+    var citySelect = document.getElementById("city");
+    var districtSelect = document.getElementById("district");
+
+    // Event listener for the city select change
+    citySelect.addEventListener("change", function() {
+        
+        var cityId = citySelect.value;
+        // Clear existing options
+        districtSelect.innerHTML = "";
+
+        // AJAX request to fetch districts based on the selected city
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_districts.php?cityId=" + cityId, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var districts = JSON.parse(xhr.responseText);
+                districts.forEach(function(district) {
+                    var option = document.createElement("option");
+                    option.value = district.districtID;
+                    option.text = district.district_name;
+                    option.style.color="#000000"; //fontblack
+                    districtSelect.appendChild(option);
+                });
+            }
+        };
+        xhr.send();
+    });    
+</script>
+
