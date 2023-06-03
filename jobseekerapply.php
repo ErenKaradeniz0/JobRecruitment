@@ -51,7 +51,7 @@
     <script>
         
         function redirectToJobSeeker() {
-            window.location.href = 'jobseeker.html';
+            window.location.href = 'jobseeker.php';
         }
     </script>
 </body>

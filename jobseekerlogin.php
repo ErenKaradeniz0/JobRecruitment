@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     if ($row) {
         $_SESSION["username"] = $row["username"];
-        header("Location: info.php");
+        header("Location: jobseeker.php");
         exit();
     } else {
         $error = "Invalid username or password";

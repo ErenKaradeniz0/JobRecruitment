@@ -16,7 +16,7 @@
     <form>
         <h3>Select your Choice</h3>
         <button type="button" onclick="redirectApply()">Apply</button>
-        <button type="button" onclick="redirectToHome()">Go home page</button>
+        <button type="button" onclick="redirectToHome()">Log out</button>
     </form>
 
     <script>
@@ -25,7 +25,7 @@
         }
 
         function redirectToHome() {
-            window.location.href = 'index.php';
+            window.location.href = 'index.html';
         }
     </script>
 
