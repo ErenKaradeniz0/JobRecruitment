@@ -13,7 +13,7 @@ if (isset($_GET['cityId'])) {
     }
     else{
 
-    $sql = "SELECT * FROM Districts WHERE cityID = $cityId";
+    $sql = "SELECT * FROM Districts WHERE cityID = '$cityId'";
     $params = array($cityId);
     $stmt = sqlsrv_query($conn, $sql, $params);
 

@@ -1,3 +1,41 @@
+<?php 
+
+require_once 'connect_db.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    @$gender = $_POST['gender'];
+    $phone = $_POST['phone'];
+    $birthdate=$_POST['birthdate'];
+    $city=$_POST['city'];
+    $district=$_POST['district'];
+    @$address=$_POST['other_address'];
+    
+    $sql = "SELECT * FROM Users WHERE email = '$email'";
+    $stmt = sqlsrv_query($conn, $sql);
+    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    if($row)
+    {
+        echo "This email is already exist.";
+    }
+    else
+    {
+        $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
+                        VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
+        if(sqlsrv_query($conn,$reg)){
+            header("Location: jobseeker.php");
+        }
+        else
+            echo "ERROR";
+        
+    }
+
+    
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -51,14 +89,14 @@
 
         <div class="address-container">
             <label for="city">City</label>
-            <select name="cities" id="city" style="color:black;"> <!-- fontblack-->
+            <select name="city" id="city" style="color:black;"> <!-- fontblack-->
                 <option selected="selected" value="0" style="color:black;">Select to City</option> <!-- fontblack-->
                 <?php include "get_cities.php";?>
             </select>
             
 
             <label for="district">District</label>
-            <select name="districts" id="district" style="color:black;"> <!-- fontblack-->
+            <select name="district" id="district" style="color:black;"> <!-- fontblack-->
                 <option selected="selected" value="0" style="color:black;">Select to District</option> <!-- fontblack-->
                 <!-- District options will be populated dynamically using JavaScript -->
             </select>
