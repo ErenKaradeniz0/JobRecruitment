@@ -44,7 +44,6 @@
          
         </tr>
 
-        <!-- Add more job postings here -->
 
     </table>
 

@@ -63,10 +63,13 @@
     <label for="other">Other Address:</label>
     <textarea id="other" name="other_address" rows="4" cols="30"></textarea>
     
-    <button>Register</button>
+    <button>Save</button>
+    <button>Delete Account</button>
+    <button type="button" onclick="redirectToJobSeeker()">Go job seeker main page</button>
     
     
     </form>
+
 
 <script>
     var citySelect = document.getElementById("city");
@@ -96,6 +99,12 @@
         };
         xhr.send();
     });    
+
+
+        
+    function redirectToJobSeeker() {
+        window.location.href = 'jobseeker.php';
+    }
 </script>
 </body>
 
