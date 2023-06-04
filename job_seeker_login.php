@@ -4,10 +4,10 @@
     require_once 'connect_db.php'; 
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sql = "SELECT userID FROM Users WHERE email = '$username' AND password = '$password'";
+        $sql = "SELECT userID FROM Users WHERE email = '$email' AND password = '$password'";
         $stmt = sqlsrv_query($conn, $sql);
 
         if ($stmt === false) {
@@ -21,7 +21,7 @@
             header("Location: job_seeker.php");
             exit();
         } else {
-            $error = "Invalid username or password";
+            $error = "Invalid email or password";
         }
     }
 
@@ -49,8 +49,8 @@
         <button type="button" onclick="redirectToHome()">Go home page</button>
         <h3>Job Seeker Login</h3>
     
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email" id="username" name="username" required>
+        <label for="email">email</label>
+        <input type="text" placeholder="Email" id="email" name="email" required>
     
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password" required>
