@@ -1,47 +1,32 @@
-<?php
-session_start();
+<?php 
+    session_start();
 
-require_once 'connect_db.php'; 
+    require_once 'connect_db.php'; 
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $sql = "SELECT userID FROM Users WHERE email = '$username' AND password = '$password'";
+        $stmt = sqlsrv_query($conn, $sql);
 
-    $cityID = $_POST['cityID'];
-    $districtID = $_POST['districtID'];
-    $name = $_POST['name'];
-    $surname = $_POST['surname'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $birth_date = $_POST['birth_date'];
-    $gender = $_POST['gender'];
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
 
-    $sql = "SELECT cityID, districtID, name, surname, password, email, phone, address, birth_date, gender FROM Users WHERE email = '$email' AND password = '$password'";
-    $stmt = sqlsrv_query($conn, $sql);
+        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
-    if ($stmt === false) {
-        die(print_r(sqlsrv_errors(), true));
+        if ($row) {
+            $_SESSION["userID"] = $row["userID"];
+            header("Location: job_seeker.php");
+            exit();
+        } else {
+            $error = "Invalid username or password";
+        }
     }
 
-    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-    if ($row) {
-        
-        $_SESSION["cityID"] = $row["cityID"];
-        $_SESSION["districtID"] = $row["districtID"];
-        $_SESSION["name"] = $row["name"];
-        $_SESSION["surname"] = $row["surname"];
-        $_SESSION["password"] = $row["password"];
-        $_SESSION["email"] = $row["email"];
-        $_SESSION["phone"] = $row["phone"];
-        $_SESSION["address"] = $row["address"];
-        $_SESSION["birth_date"] = $row["birth_date"];
-        $_SESSION["gender"] = $row["birth_date"];
-        header("Location: job_seeker.php");
-        exit();
-    } else {
-        $error = "Invalid email or password";
-    }
-}
+
+
 ?>
 
 

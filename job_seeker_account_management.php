@@ -1,27 +1,34 @@
 <?php 
     @session_start();  
     require_once 'connect_db.php' ;  
+    @$userid = $_SESSION["userID"];
 
-    @$userid = $_SESSION["userid"];
-
-    $s = "SELECT * FROM Users WHERE userID = $userid";
+    $sql = "SELECT * FROM Users WHERE userID = $userid";
     
     $stmt = sqlsrv_query($conn, $sql);
     if ($stmt === false) {
         die(print_r(sqlsrv_errors(), true));
     }
 
-    $user_infos = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    $user_info=sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
     if($user_info){
         $u_name = $user_info["name"];
         $u_surname = $user_info["surname"];
-        $password = $user_info["password"];
-        $email = $user_info["email"];
-        $phone= $user_info["phone"];
-        $address = $user_info["password"];
-        $birth_date = $user_info["birth_date"];
-        $gender = $user_info["gender"];
+        $u_password = $user_info["password"];
+        $u_email = $user_info["email"];
+        $u_phone= $user_info["phone"];
+        $u_address = $user_info["address"];
+        $u_birth_date =$user_info["birth_date"];
+        
+        $u_gender = $user_info["gender"];
+        if($u_gender=="Male"){
+            $male="checked";
+        }
+        elseif($u_gender=="Male"){
+            $female="checked";
+        }
+
     }
 
 
@@ -47,32 +54,32 @@
         <h3>Account Management</h3>
     <div class="name-container">
         <label for="name">Name</label>
-        <input type="text" placeholder="Eren" id="name" name="name" required>
+        <input type="text" value="<?php echo $u_name;?>" id="name" name="name" required>
     
         <label for="surname">Surname</label>
-        <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
+        <input type="text" value="<?php echo $u_surname;?>" id="surname" name="surname" required>
     </div>
     
     <label for="">Email</label>
-    <input type="email" placeholder="Email" id="email" name="email" required>
+    <input type="email" value="<?php echo $u_email;?>" id="email" name="email" required>
     
     <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password" name="password" required>
+    <input type="password" value="<?php echo $u_password;?>" id="password" name="password" required>
     
     
     <div class="gender-container">
         <label for="gender"> Gender : </label>
-        <input type="radio" id="gender-male" name="gender" value="male">
+        <input type="radio" id="gender-male" name="gender" value="Erkek" ng-model='genderValue' <?php echo @$male;?>>
         <label for="gender-male">Male</label>
-        <input type="radio" id="gender-female" name="gender" value="female">
+        <input type="radio" id="gender-female" name="gender" value="female" <?php echo @$female;?>>
         <label for="gender-female">Female</label>
     </div>
     
     <label for="">Phone</label>
-    <input type="tel" placeholder="05511375555" id="phone" name="phone" required>
+    <input type="tel" value="<?php echo $u_phone;?>" id="phone" name="phone" required>
     
     <label for="">Birth Date</label>
-    <input type="date" placeholder="11/11/2002" id="birth_date" name="birthdate" required>
+    <input type="date" value="<?php echo $u_birth_date; ?>" id="birth_date" name="birthdate" required>
     
     <div class="address-container">
         <label for="city">City</label>
@@ -89,7 +96,7 @@
     </div>
     
     <label for="other">Other Address:</label>
-    <textarea id="other" name="other_address" rows="4" cols="30"></textarea>
+    <textarea id="other" name="other_address" rows="4" cols="30"><?php echo $u_address;?></textarea>
     
     <button>Save</button>
     <button type="button" onclick="redirectToJobSeeker()">Main page</button>

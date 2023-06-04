@@ -1,19 +1,28 @@
-<<<<<<< HEAD
-<?php
-session_start();
+<?php 
+    session_start(); 
 
-if (!isset($_SESSION["email"])) {
-    header("Location: job_seeker_login.php"); // Redirect to login page if not logged in
-    exit();
-}
+    require_once 'connect_db.php' ; 
+    
+    $userid = $_SESSION["userID"];
+    echo $userid;
 
-$cityID = $_SESSION["cityID"];
-$name = $_SESSION["name"];
+    $sql = "SELECT name FROM Users WHERE userID = $userid";
+    
+    $stmt = sqlsrv_query($conn, $sql);
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    $user_info = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+    if($user_info){
+        $u_name = $user_info["name"];
+        echo $u_name;
+    }
+
 
 ?>
 
-=======
->>>>>>> eece12de33135ad325db5f7fc5632c87950c5ec5
 <!DOCTYPE html>
 <html>
 
