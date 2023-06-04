@@ -1,5 +1,5 @@
 <?php
-     $servername = "DESKTOP-JM9KUVR\MSSQLSERVER2022";
+     $servername = "Eren\SQLEXPRESS"
      $dbUsername = "sa";
      $dbPassword = "1234";
      $dbName = "JobRecruitmentDB";
