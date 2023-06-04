@@ -4,7 +4,7 @@ session_start();
 require_once 'connect_db.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userID = $_POST['userID'];
+
     $cityID = $_POST['cityID'];
     $districtID = $_POST['districtID'];
     $name = $_POST['name'];
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birth_date = $_POST['birth_date'];
     $gender = $_POST['gender'];
 
-    $sql = "SELECT userID, cityID, districtID, name, surname, password, email, phone, address, birth_date, gender FROM Users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT cityID, districtID, name, surname, password, email, phone, address, birth_date, gender FROM Users WHERE email = '$email' AND password = '$password'";
     $stmt = sqlsrv_query($conn, $sql);
 
     if ($stmt === false) {
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     if ($row) {
-        $_SESSION["userID"] = $row["userID"];
+        
         $_SESSION["cityID"] = $row["cityID"];
         $_SESSION["districtID"] = $row["districtID"];
         $_SESSION["name"] = $row["name"];
@@ -43,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -65,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="button" onclick="redirectToHome()">Go home page</button>
         <h3>Job Seeker Login</h3>
     
-        <label for="email">email</label>
-        <input type="text" placeholder="Email" id="email" name="email" required>
+        <label for="username">Username</label>
+        <input type="text" placeholder="Email" id="username" name="username" required>
     
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password" required>

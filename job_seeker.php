@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 
@@ -11,6 +12,8 @@ $name = $_SESSION["name"];
 
 ?>
 
+=======
+>>>>>>> eece12de33135ad325db5f7fc5632c87950c5ec5
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +30,6 @@ $name = $_SESSION["name"];
     </div>
 
     <form>
-        <h3>Welcome, <?php echo $name; ?></h3>
         <h3>Select your Choice</h3>
         <button type="button" onclick="redirectManage()">Manage Account</button>
         <button type="button" onclick="redirectApply()">Apply</button>

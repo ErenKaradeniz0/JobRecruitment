@@ -1,5 +1,5 @@
 <?php
-     $servername = "EREN\SQLEXPRESS";
+     $servername = "DESKTOP-JM9KUVR\MSSQLSERVER2022";
      $dbUsername = "sa";
      $dbPassword = "1234";
      $dbName = "JobRecruitmentDB";
@@ -9,7 +9,7 @@
     $conn = sqlsrv_connect( $servername, $connectionInfo);
 
 if( $conn ) {
-     //echo "Connection established.<br />";
+     // echo "Connection established.<br />";
 }else{
 
      echo "Connection could not be established.<br />";
