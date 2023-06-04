@@ -7,15 +7,8 @@ if (!isset($_SESSION["email"])) {
 }
 
 $cityID = $_SESSION["cityID"];
-$districtID = $_SESSION["districtID"];
 $name = $_SESSION["name"];
-$surname = $_SESSION["surname"];
-$password = $_SESSION["password"];
-$email = $_SESSION["email"];
-$phone = $_SESSION["phone"];
-$address = $_SESSION["address"];
-$birth_date = $_SESSION["birth_date"];
-$gender = $_SESSION["gender"];
+
 ?>
 
 <!DOCTYPE html>

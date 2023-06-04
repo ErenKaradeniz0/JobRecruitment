@@ -4,7 +4,7 @@ session_start();
 require_once 'connect_db.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    $userID = $_POST['userID'];
     $cityID = $_POST['cityID'];
     $districtID = $_POST['districtID'];
     $name = $_POST['name'];
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birth_date = $_POST['birth_date'];
     $gender = $_POST['gender'];
 
-    $sql = "SELECT cityID, districtID, name, surname, password, email, phone, address, birth_date, gender FROM Users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT userID, cityID, districtID, name, surname, password, email, phone, address, birth_date, gender FROM Users WHERE email = '$email' AND password = '$password'";
     $stmt = sqlsrv_query($conn, $sql);
 
     if ($stmt === false) {
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     if ($row) {
-        
+        $_SESSION["userID"] = $row["userID"];
         $_SESSION["cityID"] = $row["cityID"];
         $_SESSION["districtID"] = $row["districtID"];
         $_SESSION["name"] = $row["name"];
