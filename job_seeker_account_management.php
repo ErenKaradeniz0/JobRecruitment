@@ -25,7 +25,7 @@
         if($u_gender=="Male"){
             $male="checked";
         }
-        elseif($u_gender=="Male"){
+        elseif($u_gender=="Female"){
             $female="checked";
         }
 
