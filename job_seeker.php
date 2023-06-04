@@ -1,23 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION["email"])) {
-    header("Location: job_seeker_login.php"); // Redirect to login page if not logged in
-    exit();
-}
-
-$cityID = $_SESSION["cityID"];
-$districtID = $_SESSION["districtID"];
-$name = $_SESSION["name"];
-$surname = $_SESSION["surname"];
-$password = $_SESSION["password"];
-$email = $_SESSION["email"];
-$phone = $_SESSION["phone"];
-$address = $_SESSION["address"];
-$birth_date = $_SESSION["birth_date"];
-$gender = $_SESSION["gender"];
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -34,7 +14,6 @@ $gender = $_SESSION["gender"];
     </div>
 
     <form>
-        <h3>Welcome, <?php echo $name; ?></h3>
         <h3>Select your Choice</h3>
         <button type="button" onclick="redirectManage()">Manage Account</button>
         <button type="button" onclick="redirectApply()">Apply</button>
