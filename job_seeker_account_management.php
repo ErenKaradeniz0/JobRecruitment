@@ -1,9 +1,9 @@
 <?php 
     @session_start();  
     require_once 'connect_db.php' ;  
-    @$userid = $_SESSION["userID"];
+    @$userID = $_SESSION["userID"];
 
-    $sql = "SELECT * FROM Users WHERE userID = $userid";
+    $sql = "SELECT * FROM Users WHERE userID = $userID";
     
     $stmt = sqlsrv_query($conn, $sql);
     if ($stmt === false) {
@@ -69,9 +69,9 @@
     
     <div class="gender-container">
         <label for="gender"> Gender : </label>
-        <input type="radio" id="gender-male" name="gender" value="Erkek" ng-model='genderValue' <?php echo @$male;?>>
+        <input type="radio" id="gender-male" name="gender" value="Male" ng-model='genderValue' <?php echo @$male;?>>
         <label for="gender-male">Male</label>
-        <input type="radio" id="gender-female" name="gender" value="female" <?php echo @$female;?>>
+        <input type="radio" id="gender-female" name="gender" value="Female" <?php echo @$female;?>>
         <label for="gender-female">Female</label>
     </div>
     
@@ -79,7 +79,7 @@
     <input type="tel" value="<?php echo $u_phone;?>" id="phone" name="phone" required>
     
     <label for="">Birth Date</label>
-    <input type="date" value="<?php echo $u_birth_date; ?>" id="birth_date" name="birthdate" required>
+    <input type="date" value="<?php echo $u_birth_date; ?>" id="birth_date" name="birth_date" required>
     
     <div class="address-container">
         <label for="city">City</label>
@@ -90,7 +90,7 @@
     
     
         <label for="district">District</label>
-        <select name="district" id="district"> <!-- fontblack-->
+        <select name="district" id="district">
             <option selected="selected" value="0" style="color:black;">Select to District</option>
         </select>
     </div>
