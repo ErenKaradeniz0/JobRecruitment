@@ -3,7 +3,11 @@
     require_once 'connect_db.php' ;  
     @$userID = $_SESSION["userID"];
 
-    $sql = "SELECT * FROM Users WHERE userID = $userID";
+    $sql = "SELECT u.userID, u.cityID, u.districtID, u.name, u.surname, u.password, u.email,
+            u.phone, u.address, u.birth_date,u.gender, c.city_name, d.district_name
+            FROM Users u 
+            JOIN Cities c ON u.cityID = c.cityID 
+            JOIN Districts d ON u.districtID = d.districtID WHERE u.userID = $userID";
     
     $stmt = sqlsrv_query($conn, $sql);
     if ($stmt === false) {
@@ -20,7 +24,6 @@
         $u_phone= $user_info["phone"];
         $u_address = $user_info["address"];
         $u_birth_date =$user_info["birth_date"];
-        
         $u_gender = $user_info["gender"];
         if($u_gender=="Male"){
             $male="checked";
@@ -28,7 +31,19 @@
         elseif($u_gender=="Female"){
             $female="checked";
         }
+        
+        $u_cityid=$user_info["cityID"];
+        $c_cityname=$user_info["city_name"];
+        $u_districid=$user_info["districtID"];
+        $d_districtname=$user_info["district_name"];
+        
+        $_SESSION["cityID"]=$u_cityid=$user_info["cityID"];
+    }
 
+    if (isset($_POST["Update"])) {
+
+        
+    
     }
 
 
@@ -84,21 +99,22 @@
     <div class="address-container">
         <label for="city">City</label>
         <select name="city" id="city">
-                    <option selected=" selected" value="0" style="color:black;">Select to City</option>
+                    <option selected=" selected" value="<?php echo $u_cityid; ?>" style="color:black;"><?php echo $c_cityname; ?></option>
             <?php include "get_cities.php";?>
         </select>
     
     
         <label for="district">District</label>
         <select name="district" id="district">
-            <option selected="selected" value="0" style="color:black;">Select to District</option>
+            <!--<option selected="selected" value="<?php echo $u_districid; ?>" style="color:black;"><?php echo $d_districtname; ?></option> -->
+            <?php include "get_districts2.php";?>
         </select>
     </div>
     
     <label for="other">Other Address:</label>
     <textarea id="other" name="other_address" rows="4" cols="30"><?php echo $u_address;?></textarea>
     
-    <button>Save</button>
+    <button type="button" name="UPDATE">Save</button>
     <button type="button" onclick="redirectToJobSeeker()">Main page</button>
     <button style="background-color:red; color:white">Delete Account</button>
     
@@ -114,6 +130,7 @@
     citySelect.addEventListener("change", function () {
 
         var cityId = citySelect.value;
+        
 
         districtSelect.innerHTML = "";
 
@@ -128,16 +145,48 @@
                     option.text = district.district_name;
                     option.style.color = "#000000";
                     districtSelect.appendChild(option);
+                    
                 });
             }
         };
         xhr.send();
     });    
 
+    /*
+    document.addEventListener("load",function(){
+        alert("onload triger");
 
+    });
+*/
+/*
+    window.onload=function() {
+        var cityId = citySelect.value;
         
+
+        districtSelect.innerHTML = "";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_districts.php2?cityId=" + cityId, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var districts = JSON.parse(xhr.responseText);
+                districts.forEach(function (district) {
+                    var option = document.createElement("option");
+                    option.value = district.districtID;
+                    option.text = district.district_name;
+                    option.style.color = "#000000";
+                    districtSelect.appendChild(option);
+                    
+                });
+            }
+        };
+        xhr.send();
+    }
+
+  */      
     function redirectToJobSeeker() {
         window.location.href = 'job_seeker.php';
+        
     }
 </script>
 </body>
