@@ -13,8 +13,9 @@ if (isset($_GET['cityId'])) {
     }
     else{
 
-    $sql = "SELECT * FROM Districts WHERE cityID = $cityId";
-    $stmt = sqlsrv_query($conn, $sql);
+    $sql = "SELECT * FROM Districts WHERE cityID = '$cityId'";
+    $params = array($cityId);
+    $stmt = sqlsrv_query($conn, $sql, $params);
 
     if ($stmt === false) {
         die(print_r(sqlsrv_errors(), true));

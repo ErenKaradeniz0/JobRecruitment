@@ -1,3 +1,25 @@
+<?php 
+    session_start(); 
+
+    require_once 'connect_db.php' ; 
+    
+    $companyID = $_SESSION["companyID"];
+
+    $sql = "SELECT company_name FROM Companies WHERE companyID = $companyID";
+    
+    $stmt = sqlsrv_query($conn, $sql);
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    $company_info = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+    if($company_info){
+        $c_name = $company_info["company_name"];
+    }
+
+
+?> 
 <!DOCTYPE html>
 <html>
 
