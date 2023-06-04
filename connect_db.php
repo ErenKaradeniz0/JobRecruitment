@@ -1,5 +1,5 @@
 <?php
-     $servername = "DESKTOP-8JKV54G\SQLEXPRESS";
+     $servername = "EREN\SQLEXPRESS";
      $dbUsername = "sa";
      $dbPassword = "1234";
      $dbName = "JobRecruitmentDB";
