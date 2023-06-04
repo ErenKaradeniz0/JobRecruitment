@@ -49,7 +49,7 @@
         <button type="button" onclick="redirectToHome()">Go home page</button>
         <h3>Job Seeker Login</h3>
     
-        <label for="email">email</label>
+        <label for="email">Email</label>
         <input type="text" placeholder="Email" id="email" name="email" required>
     
         <label for="password">Password</label>
