@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["email"])) {
+    header("Location: job_seeker_login.php"); // Redirect to login page if not logged in
+    exit();
+}
+$cityID = $_SESSION["cityID"];
+$districtID = $_SESSION["districtID"];
+$name = $_SESSION["name"];
+$surname = $_SESSION["surname"];
+$password = $_SESSION["password"];
+$email = $_SESSION["email"];
+$phone = $_SESSION["phone"];
+$address = $_SESSION["address"];
+$birth_date = $_SESSION["birth_date"];
+$gender = $_SESSION["gender"];
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,17 +37,17 @@
         <h3>Account Management</h3>
     <div class="name-container">
         <label for="name">Name</label>
-        <input type="text" placeholder="Eren" id="name" name="name" required>
+        <input type="text" placeholder="Eren" id="name" name="name" value="<?php echo $name; ?>" required>
     
         <label for="surname">Surname</label>
-        <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
+        <input type="text" placeholder="Karadeniz" id="surname" name="surname" value="<?php echo $surname; ?>" required>
     </div>
     
     <label for="">Email</label>
-    <input type="email" placeholder="Email" id="email" name="email" required>
+    <input type="email" placeholder="Email" id="email" name="email" value="<?php echo $email; ?>" required>
     
     <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password" name="password" required>
+    <input type="password" placeholder="Password" id="password" name="password" value="<?php echo $password; ?>" required>
     
     
     <div class="gender-container">
@@ -40,27 +59,27 @@
     </div>
     
     <label for="">Phone</label>
-    <input type="tel" placeholder="05511375555" id="phone" name="phone" required>
+    <input type="tel" placeholder="05511375555" id="phone" name="phone" value="<?php echo $phone; ?>" required>
     
     <label for="">Birth Date</label>
-    <input type="date" placeholder="11/11/2002" id="birth_date" name="birthdate" required>
+    <input type="date" placeholder="11/11/2002" id="birth_date" name="birth_date" value="<?php echo $birth_date; ?>" required>
     
     <div class="address-container">
         <label for="city">City</label>
         <select name="city" id="city">
-                    <option selected=" selected" value="0" style="color:black;">Select to City</option>
+                    <option selected="selected" value="<?php echo $cityID; ?>" style="color:black;">Select to City</option>
             <?php include "get_cities.php";?>
         </select>
     
     
         <label for="district">District</label>
-        <select name="district" id="district"> <!-- fontblack-->
-            <option selected="selected" value="0" style="color:black;">Select to District</option>
+        <select name="district" id="district">
+            <option selected="selected" value="<?php echo $districtID; ?>" style="color:black;">Select to District</option>
         </select>
     </div>
     
     <label for="other">Other Address:</label>
-    <textarea id="other" name="other_address" rows="4" cols="30"></textarea>
+    <textarea id="other" name="other_address" rows="4" cols="30"><?php echo $address; ?></textarea>
     
     <button>Save</button>
     <button type="button" onclick="redirectToJobSeeker()">Main page</button>

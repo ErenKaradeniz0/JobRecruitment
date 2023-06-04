@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
                         VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
         if(sqlsrv_query($conn,$reg)){
-            header("Location: jobseeker.php");
+            header("Location: job_seeker.php");
         }
         else
             echo "ERROR";
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="tel" placeholder="05511375555" id="phone" name="phone" required>
 
         <label for="">Birth Date</label>
-        <input type="date" placeholder="11/11/2002" id="birth_date" name="birthdate" required>
+        <input type="date" placeholder="11/11/2002" id="birth_date" name="birth_date" required>
 
         <div class="address-container">
             <label for="city">City</label>

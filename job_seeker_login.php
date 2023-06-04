@@ -1,10 +1,22 @@
-<?php require_once 'connect_db.php'; 
+<?php
+session_start();
+
+require_once 'connect_db.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM Users WHERE email = '$username' AND password = '$password'";
+    $cityID = $_POST['cityID'];
+    $districtID = $_POST['districtID'];
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $birth_date = $_POST['birth_date'];
+    $gender = $_POST['gender'];
+
+    $sql = "SELECT cityID, districtID, name, surname, password, email, phone, address, birth_date, gender FROM Users WHERE email = '$email' AND password = '$password'";
     $stmt = sqlsrv_query($conn, $sql);
 
     if ($stmt === false) {
@@ -13,17 +25,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     if ($row) {
-        $_SESSION["username"] = $row["username"];
+        
+        $_SESSION["cityID"] = $row["cityID"];
+        $_SESSION["districtID"] = $row["districtID"];
+        $_SESSION["name"] = $row["name"];
+        $_SESSION["surname"] = $row["surname"];
+        $_SESSION["password"] = $row["password"];
+        $_SESSION["email"] = $row["email"];
+        $_SESSION["phone"] = $row["phone"];
+        $_SESSION["address"] = $row["address"];
+        $_SESSION["birth_date"] = $row["birth_date"];
+        $_SESSION["gender"] = $row["birth_date"];
         header("Location: job_seeker.php");
         exit();
     } else {
-        $error = "Invalid username or password";
+        $error = "Invalid email or password";
     }
 }
-
-
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -45,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="button" onclick="redirectToHome()">Go home page</button>
         <h3>Job Seeker Login</h3>
     
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email" id="username" name="username" required>
+        <label for="email">email</label>
+        <input type="text" placeholder="Email" id="email" name="email" required>
     
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password" required>
