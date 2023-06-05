@@ -65,14 +65,14 @@
 
     <script>
         function redirectToCreate() {
-            window.location.href = 'employer_create.html';
+            window.location.href = 'employer_create.php';
         }
         function redirectToManage() {
-            window.location.href = 'employer_manage.html';
+            window.location.href = 'employer_manage.php';
         }
 
         function redirectToManageApplications() {
-                window.location.href = 'employer_manage_applications.html';
+                window.location.href = 'employer_manage_applications.php';
             }
 
          function redirectToManageAccount() {
