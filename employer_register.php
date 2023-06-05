@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
         function redirectToHome() {
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
         }
     </script>
 </body>

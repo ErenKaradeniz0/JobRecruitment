@@ -92,10 +92,10 @@
                         header("Location: index.php?message=" . urlencode($message));
                         exit();
                     } else {
-
-                        $message = "Deletion failed";
-                        header("Location: index.php?message=" . urlencode($message));
-                        exit();
+                            echo "<script type='text/javascript'>
+                    alert('Deletion failed');
+                    window.location = 'employer_account_management.php';
+                    </script>"; 
                     }
     }
 
