@@ -59,22 +59,40 @@ form{
     justify-content: center;
 }
 
-table {
-
-    background-color: rgba(255, 255, 255, 0.13);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    backdrop-filter: blur(25px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 20px 35px;
-    border-collapse: collapse;
-    width: 70%;
-    height: 50%;
+.table-container {
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.table-scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+table {
+  background-color: rgba(255, 255, 255, 0.13);
+  border-radius: 10px;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 20px 35px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+
+
+
 
 table td, table th {
   border: 1px solid #ddd;
@@ -185,3 +203,4 @@ input[type= "radio"]{
 .name-container input {
     width:100%;
 }
+

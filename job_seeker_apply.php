@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Job Postings</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
 
-
-    <table>
+<div class="table-container">
+  <div class="table-scroll">
+      <table>
         <tr>
             <td>
                 <button type="button" onclick="redirectToJobSeeker()">Go job seeker main page</button>
@@ -25,34 +23,53 @@
                 <h3>Job Postings</h3>
             </td>
         </tr>
-        <tr>
-            <td>
-                    <h2>Job Title 1</h2>
-                    <p>Company: Company 1</p>
-                    <p>Description: Job description 1</p>
-                    <a href="apply.php?id=1">Apply Now</a>
-            </td>
-        </tr>
-          
-        <tr>
-            <td>
-                <h2>Job Title 2</h2>
-                <p>Company: Company 2</p>
-                <p>Description: Job description 2</p>
-                <a href="apply.php?id=2">Apply Now</a>
-            </td>
-         
-        </tr>
+
+        <?php
+        require_once 'connect_db.php';
+        // Assuming you have already established a database connection
+
+        // Fetch job data from the Jobs table
+        $sql = "SELECT j.jobID, j.companyID,j.job_title,j.job_description,j.listing_date,j.working_type,c.company_name
+            FROM Jobs j 
+            JOIN Companies c ON j.companyID = c.companyID ";
+        $result = sqlsrv_query($conn, $sql);
+
+        // Check if any jobs were found
+        if ($result !== false) {
+            // Loop through each row of job data
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                $jobID = $row['jobID'];
+                $jobTitle = $row['job_title'];
+                $description = $row['job_description'];
+                $companyName = $row['company_name'];
 
 
+                echo '<tr>';
+                echo '<td>';
+                echo '<h2>' . $jobTitle . '</h2>';
+                echo '<p>Company: ' . $companyName . '</p>';
+                echo '<p>Description: ' . $description . '</p>';
+                echo '<a href="apply.php?id=' . $jobID . '">Apply Now</a>';
+                echo '</td>';
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr>';
+            echo '<td>No jobs found.</td>';
+            echo '</tr>';
+        }
+
+        // Close the database connection
+        sqlsrv_close($conn);
+        ?>
     </table>
-
+  </div>
+</div>
+ 
     <script>
-        
         function redirectToJobSeeker() {
             window.location.href = 'job_seeker.php';
         }
     </script>
 </body>
-
 </html>
