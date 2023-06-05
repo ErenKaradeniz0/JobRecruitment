@@ -26,17 +26,14 @@
 
         <?php
         require_once 'connect_db.php';
-        // Assuming you have already established a database connection
 
-        // Fetch job data from the Jobs table
         $sql = "SELECT j.jobID, j.companyID,j.job_title,j.job_description,j.listing_date,j.working_type,c.company_name
             FROM Jobs j 
             JOIN Companies c ON j.companyID = c.companyID ";
         $result = sqlsrv_query($conn, $sql);
 
-        // Check if any jobs were found
         if ($result !== false) {
-            // Loop through each row of job data
+
             while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                 $jobID = $row['jobID'];
                 $jobTitle = $row['job_title'];
@@ -49,7 +46,7 @@
                 echo '<h2>' . $jobTitle . '</h2>';
                 echo '<p>Company: ' . $companyName . '</p>';
                 echo '<p>Description: ' . $description . '</p>';
-                echo '<a href="apply.php?id=' . $jobID . '">Apply Now</a>';
+                echo '<a href="job_seeker_apply_server.php?id=' . $jobID . '">Apply Now</a>';
                 echo '</td>';
                 echo '</tr>';
             }
@@ -59,7 +56,6 @@
             echo '</tr>';
         }
 
-        // Close the database connection
         sqlsrv_close($conn);
         ?>
     </table>

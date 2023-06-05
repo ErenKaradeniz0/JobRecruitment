@@ -33,14 +33,11 @@
             $female="checked";
         }
         
-        $u_cityid=$user_info["cityID"];
-        $c_cityname=$user_info["city_name"];
-        $u_districid=$user_info["districtID"];
-        $d_districtname=$user_info["district_name"];
-        /*
-        echo $u_name , " - " , $u_surname , " - " , $u_email , " - " , $u_password , " - " , $u_gender , " - " , 
-            $u_phone , " - " , $u_birth_date , " ( " , $u_cityid , " ) { " , $u_districid , " } " , $u_address , "<br>";
-*/
+        $u_city_id=$user_info["cityID"];
+        $c_city_name=$user_info["city_name"];
+        $u_district_id=$user_info["districtID"];
+        $d_district_name=$user_info["district_name"];
+
         $_SESSION["cityID"]=$user_info["cityID"];
         $_SESSION["districtID"]=$user_info["districtID"];
     }
@@ -54,17 +51,14 @@
             $up_password = $_POST['password'];
             @$up_gender = $_POST['gender'];
             $up_phone = $_POST['phone'];
-            $up_birthdate=$_POST['birth_date'];
+            $up_birth_date=$_POST['birth_date'];
             $up_cityId=$_POST['city'];
             $up_districtId=$_POST['district'];
             @$up_address=$_POST['other_address'];
-            /*
-            echo $up_name , " - " , $up_surname , " - " , $up_email , " - " , $up_password , " - " , $up_gender , " - " , 
-            $up_phone , " - " , $up_birthdate , " ( " , $up_cityId , " ) { " , $up_districtId , " } " , $up_address;
-*/
+
             
             $sql = "UPDATE Users SET name='$up_name', surname='$up_surname', email='$up_email',password='$up_password', 
-                    gender='$up_gender', phone='$up_phone', birth_date='$up_birthdate', cityID=$up_cityId, districtID=$up_districtId  
+                    gender='$up_gender', phone='$up_phone', birth_date='$up_birth_date', cityID=$up_cityId, districtID=$up_districtId  
                     WHERE userID=$userID";
         
             $stmt = sqlsrv_query($conn, $sql);
@@ -95,8 +89,6 @@
             }
     }
 
-    
-    
 ?>
 
 <!DOCTYPE html>
@@ -149,14 +141,13 @@
     <div class="address-container">
         <label for="city">City</label>
         <select name="city" id="city">
-            <option selected=" selected" value="<?php echo $u_cityid; ?>" style="color:black;"><?php echo $c_cityname; ?></option>
+            <option selected=" selected" value="<?php echo $u_city_id; ?>" style="color:black;"><?php echo $c_city_name; ?></option>
             <?php include "get_cities.php";?>
         </select>
     
     
         <label for="district">District</label>
         <select name="district" id="district">
-            <!--<option selected="selected" value="<?php echo $u_districid; ?>" style="color:black;"><?php echo $d_districtname; ?></option> -->
             <?php include "get_districts2.php";?>
         </select>
     </div>
@@ -202,42 +193,6 @@
         xhr.send();
     });    
 
-    /*
-    document.addEventListener("load",function(){
-        alert("onload triger");
-
-    });
-*/
-
-/*
-
-    window.onload=function() {
-        var citySelect = document.getElementById("city");
-        var districtSelect = document.getElementById("district");
-        var cityId = citySelect.value;
-        
-
-        districtSelect.innerHTML = "";
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "get_districts.php2?cityId=" + cityId, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var districts = JSON.parse(xhr.responseText);
-                districts.forEach(function (district) {
-                    var option = document.createElement("option");
-                    option.value = district.districtID;
-                    option.text = district.district_name;
-                    option.style.color = "#000000";
-                    districtSelect.appendChild(option);
-                    
-                });
-            }
-        };
-        xhr.send();
-    }
-*/
-       
     function redirectToJobSeeker() {
         window.location.href = 'job_seeker.php';
         
