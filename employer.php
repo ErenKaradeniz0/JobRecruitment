@@ -53,7 +53,10 @@
         <button type="button" onclick="redirectToManageApplications()">
             Manage applications
         </button>
-
+         
+        <button type="button" onclick="redirectToManageAccount()">
+            Manage account
+        </button>
 
         <button type="button" onclick="redirectToHome()">Log out</button>
         
@@ -72,9 +75,16 @@
                 window.location.href = 'employer_manage_applications.html';
             }
 
+         function redirectToManageAccount() {
+            window.location.href = 'employer_account_management.php';
+        }
+
         function redirectToHome() {
                 window.location.href = 'index.html';
             }
+
+       
+        
     </script>
 
 </body>

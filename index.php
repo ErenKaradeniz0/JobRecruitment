@@ -1,3 +1,13 @@
+<?php
+// index.php
+
+// Check if a message query parameter is present
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+    echo '<script>alert("' . $message . '");</script>';
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
