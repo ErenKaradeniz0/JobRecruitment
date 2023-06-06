@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td>
-                <h3>Job Postings</h3>
+                <h3>My Applications</h3>
             </td>
         </tr>
 
@@ -81,6 +81,12 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
 
         sqlsrv_close($conn);
         ?>
+
+                <tr>
+            <td>
+                <button type="button" onclick="redirectToApplies()">My Applications</button>
+            </td>
+        </tr>
     </table>
   </div>
 </div>
@@ -88,6 +94,9 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
     <script>
         function redirectToJobSeeker() {
             window.location.href = 'job_seeker.php';
+        }
+         function redirectToApplies() {
+            window.location.href = 'job_seeker_applies.php';
         }
     </script>
 </body>
