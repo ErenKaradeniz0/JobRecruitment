@@ -56,7 +56,7 @@
             else{
                 echo "<script type='text/javascript'>
                     alert('Your information has been successfully updated.');
-                    window.location = 'employer_account_management.php';
+                    window.location = 'employer.php';
                     </script>"; 
             }
             
