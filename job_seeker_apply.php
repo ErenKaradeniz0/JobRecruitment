@@ -43,10 +43,11 @@
 
                 echo '<tr>';
                 echo '<td>';
-                echo '<h2>' . $jobTitle . '</h2>';
-                echo '<p>Company: ' . $companyName . '</p>';
+                echo '<h1>' . $jobTitle . '</h1>';
+                echo '<p>Company: ' . $companyName , " ($cityID/$districtID)" . '</p>';
                 echo '<p>Description: ' . $description . '</p>';
-                echo '<a href="job_seeker_apply_server.php?id=' . $jobID . '">Apply Now</a>';
+                echo '<p>Number of applicants: ' . $count . '</p>';
+                echo '<a href="job_seeker_apply_server.php?id=' . $districtID . '">Apply Now</a>';
                 echo '</td>';
                 echo '</tr>';
             }
