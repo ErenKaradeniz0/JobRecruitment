@@ -64,7 +64,7 @@
     }
 
         if (isset($_POST["Delete"])) {
-                    $query1 = "DELETE A
+                    $query = "DELETE A
                     FROM Applications A
                     JOIN Jobs J ON A.jobID = J.jobID
                     JOIN Companies C ON J.companyID = C.companyID
@@ -79,7 +79,7 @@
                     FROM Companies
                     WHERE companyID = $companyID;
                     ";
-                    $result = sqlsrv_query($conn, $query1);
+                    $result = sqlsrv_query($conn, $query);
 
                     if ($result === false) {
                         $errors = sqlsrv_errors();

@@ -76,16 +76,32 @@
     }
 
         if (isset($_POST["Delete"])) {
-            $sql="DELETE FROM Users WHERE userID=$userID";
-            $stmt = sqlsrv_query($conn, $sql);
-            if ($stmt === false) {
-                die(print_r(sqlsrv_errors(), true));
+            $query = "DELETE A
+            FROM Applications A
+            JOIN Users U ON A.userID = U.userID
+            WHERE U.userID = $userID;
+
+            DELETE U
+            From Users U
+            Where A.userID = $userID;
+            ";
+            $result = sqlsrv_query($conn, $query);
+            
+            if ($result === false) {
+                $errors = sqlsrv_errors();
+                foreach ($errors as $error) {
+                    echo "Query 1 Error: " . $error['message'] . "<br>";
+                }
             }
-            else{
-                echo "<script type='text/javascript'>
-                    alert('Your information has been successfully deleted.');
-                    window.location = 'index.html';
-                    </script>"; 
+            if ($result) {
+                $message = "Deletion completed successfully.";
+                header("Location: index.php?message=" . urlencode($message));
+                exit();
+            } else {
+                    echo "<script type='text/javascript'>
+            alert('Deletion failed');
+            window.location = 'job_seeker_account_management.php';
+            </script>"; 
             }
     }
 
