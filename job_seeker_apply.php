@@ -44,7 +44,7 @@
         @$userID = $_SESSION["userID"];
 
 
-$sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
+$sql = "SELECT j.jobID, j.companyID, j.job_title, j.listing_status, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
         FROM Jobs j
         JOIN Companies c ON j.companyID = c.companyID
         LEFT JOIN (
@@ -54,7 +54,7 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
         ) a ON j.jobID = a.jobID
         LEFT JOIN Cities ci ON c.cityID = ci.cityID
         LEFT JOIN Districts d ON c.districtID = d.districtID
-        WHERE j.jobID NOT IN (
+        WHERE j.listing_status = 'Active' AND j.jobID NOT IN (
             SELECT jobID
             FROM Applications
             WHERE userID = $userID
