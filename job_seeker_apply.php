@@ -18,6 +18,12 @@
             <td>
                 <button type="button" onclick="redirectToJobSeeker()">Go job seeker main page</button>
             </td>
+            
+                <tr>
+            <td>
+                <button type="button" onclick="redirectToApplies()">My Applications</button>
+            </td>
+        </tr>
         </tr>
         <tr>
             <td>
@@ -89,11 +95,6 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
         sqlsrv_close($conn);
         ?>
 
-                <tr>
-            <td>
-                <button type="button" onclick="redirectToApplies()">My Applications</button>
-            </td>
-        </tr>
     </table>
   </div>
 </div>
