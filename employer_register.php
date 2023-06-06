@@ -91,16 +91,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </form>
 
-    <script>
-        function redirectToHome() {
-            window.location.href = 'index.php';
-        }
-    </script>
+
 </body>
 
 </html>
 
 <script>
+
+
+     function redirectToHome() {
+            window.location.href = 'index.php';
+        }
     var citySelect = document.getElementById("city");
     var districtSelect = document.getElementById("district");
 
