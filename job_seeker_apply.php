@@ -25,11 +25,21 @@
         </tr>
 
         <?php
+        @session_start();
+         
         require_once 'connect_db.php';
+        @$userID = $_SESSION["userID"];
 
-        $sql = "SELECT j.jobID, j.companyID,j.job_title,j.job_description,j.listing_date,j.working_type,c.company_name
-            FROM Jobs j 
-            JOIN Companies c ON j.companyID = c.companyID ";
+
+       $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name
+        FROM Jobs j
+        JOIN Companies c ON j.companyID = c.companyID
+        WHERE j.jobID NOT IN (
+            SELECT jobID
+            FROM Applications
+            WHERE userID = $userID
+        )";
+
         $result = sqlsrv_query($conn, $sql);
 
         if ($result !== false) {
@@ -47,7 +57,7 @@
                 echo '<p>Company: ' . $companyName , " ($cityID/$districtID)" . '</p>';
                 echo '<p>Description: ' . $description . '</p>';
                 echo '<p>Number of applicants: ' . $count . '</p>';
-                echo '<a href="job_seeker_apply_server.php?id=' . $districtID . '">Apply Now</a>';
+                echo '<a href="job_seeker_apply_server.php?id=' . $jobID . '">Apply Now</a>';
                 echo '</td>';
                 echo '</tr>';
             }
