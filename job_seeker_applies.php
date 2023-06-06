@@ -31,23 +31,14 @@
         @$userID = $_SESSION["userID"];
 
 
-$sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
+       $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name
         FROM Jobs j
         JOIN Companies c ON j.companyID = c.companyID
-        LEFT JOIN (
-            SELECT jobID, COUNT(*) AS row_count
-            FROM Applications
-            GROUP BY jobID
-        ) a ON j.jobID = a.jobID
-        LEFT JOIN Cities ci ON c.cityID = ci.cityID
-        LEFT JOIN Districts d ON c.districtID = d.districtID
         WHERE j.jobID NOT IN (
             SELECT jobID
             FROM Applications
             WHERE userID = $userID
         )";
-
-          
 
         $result = sqlsrv_query($conn, $sql);
 
@@ -58,15 +49,12 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
                 $jobTitle = $row['job_title'];
                 $description = $row['job_description'];
                 $companyName = $row['company_name'];
-                $city_name = $row['city_name'];
-                $district_name = $row['district_name'];
-                $count= $row['application_count'];
 
 
                 echo '<tr>';
                 echo '<td>';
                 echo '<h1>' . $jobTitle . '</h1>';
-                echo '<p>Company: ' . $companyName , " ($city_name/$district_name)" . '</p>';
+                echo '<p>Company: ' . $companyName , " ($cityID/$districtID)" . '</p>';
                 echo '<p>Description: ' . $description . '</p>';
                 echo '<p>Number of applicants: ' . $count . '</p>';
                 echo '<a href="job_seeker_apply_server.php?id=' . $jobID . '">Apply Now</a>';
