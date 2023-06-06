@@ -1,4 +1,39 @@
-<!DOCTYPE html>
+<?php
+
+require_once 'connect_db.php';
+
+// İş ilanlarını çekme
+$sql = "SELECT j.jobID, c.company_name, j.job_title, j.job_description, j.listing_status
+        FROM Jobs j
+        INNER JOIN Companies c ON j.companyID = c.companyID";
+$result = sqlsrv_query($conn, $sql);
+
+if ($result === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$rows = '';
+
+if (sqlsrv_has_rows($result)) {
+    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        $rows .= '<tr>
+                    <td>'.$row["job_title"].'</td>
+                    <td>'.$row["company_name"].'</td>
+                    <td>'.$row["job_description"].'</td>
+					<td>'.$row["listing_status"].'</td>
+                    <td><a href="employee_edit_posting.php?id='.$row["jobID"].'">Edit</a></td>
+                    <td><a href="employee_delete_posting.php?id='.$row["jobID"].'">Delete</a></td>
+                </tr>';
+    }
+} else {
+    $rows = '<tr>
+                <td colspan="6">Job posting not found.</td>
+            </tr>';
+}
+
+sqlsrv_free_stmt($result);
+sqlsrv_close($conn);
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -13,44 +48,31 @@
         <div class="shape"></div>
     </div>
 
-    
-
     <table>
         <tr>
-            <td colspan="5"><button style ="margin-top:0px ;" type="button" onclick="redirectToEmployer()">Main page</button></td>
+            <td colspan="6"><button style="margin-top: 0px;" type="button" onclick="redirectToEmployer()">Main page</button></td>
         </tr>
         <tr>
-            <th colspan="5"><h3>Manage Job Postings</h3></th>
+            <th colspan="6">
+                <h3>Manage Job Postings</h3>
+            </th>
         </tr>
         <tr>
             <th>Job Title</th>
             <th>Company</th>
             <th>Description</th>
+			<th>Listing Status</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        <tr>
-            <td>Job Title 1</td>
-            <td>Company 1</td>
-            <td>Job description 1</td>
-            <td><a href="edit-posting.html?id=1">Edit</a></td>
-            <td><a href="delete-posting.php?id=1">Delete</a></td>
-        </tr>
-        <tr>
-            <td>Job Title 2</td>
-            <td>Company 2</td>
-            <td>Job description 2</td>
-            <td><a href="edit-posting.html?id=2">Edit</a></td>
-            <td><a href="delete-posting.php?id=2">Delete</a></td>
-        </tr>
-
+        <?php echo $rows; ?>
     </table>
 
-        <script>
-            function redirectToEmployer() {
-                window.location.href = 'employer.php';
-            }
-        </script>
+    <script>
+        function redirectToEmployer() {
+            window.location.href = 'employer.php';
+        }
+    </script>
 </body>
 
 </html>
