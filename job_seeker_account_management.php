@@ -68,7 +68,7 @@
             else{
                 echo "<script type='text/javascript'>
                     alert('Your information has been successfully updated.');
-                    window.location = 'job_seeker_account_management.php';
+                    window.location = 'job_seeker.php';
                     </script>"; 
             }
             
