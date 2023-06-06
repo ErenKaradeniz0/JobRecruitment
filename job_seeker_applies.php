@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td>
-                <h3>Job Postings</h3>
+                <h3>My Applications</h3>
             </td>
         </tr>
 
@@ -31,7 +31,7 @@
         @$userID = $_SESSION["userID"];
 
 
-$sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
+$sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0) AS application_count
         FROM Jobs j
         JOIN Companies c ON j.companyID = c.companyID
         LEFT JOIN (
@@ -41,11 +41,12 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
         ) a ON j.jobID = a.jobID
         LEFT JOIN Cities ci ON c.cityID = ci.cityID
         LEFT JOIN Districts d ON c.districtID = d.districtID
-        WHERE j.jobID NOT IN (
+        WHERE j.jobID IN (
             SELECT jobID
             FROM Applications
             WHERE userID = $userID
         )";
+
 
           
 
@@ -69,7 +70,7 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
                 echo '<p>Company: ' . $companyName , " ($city_name/$district_name)" . '</p>';
                 echo '<p>Description: ' . $description . '</p>';
                 echo '<p>Number of applicants: ' . $count . '</p>';
-                echo '<a href="job_seeker_apply_server.php?id=' . $jobID . '">Apply Now</a>';
+                echo '<a href="job_seeker_applies_delete.php?id=' . $jobID . '">Delete Application</a>';
                 echo '</td>';
                 echo '</tr>';
             }
@@ -81,12 +82,6 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
 
         sqlsrv_close($conn);
         ?>
-
-                <tr>
-            <td>
-                <button type="button" onclick="redirectToApplies()">My Applications</button>
-            </td>
-        </tr>
     </table>
   </div>
 </div>
