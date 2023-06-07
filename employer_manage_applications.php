@@ -42,7 +42,7 @@
                 @$companyID = $_SESSION["companyID"];
 
                 include "security.php";
-                login_guard($_SESSION["userID"]);  
+                login_guard($_SESSION["companyID"]);  
 
                 $filter = "";
                 if (isset($_GET['status'])) {
