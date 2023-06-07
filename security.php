@@ -1,5 +1,7 @@
 <?php 
 
+//include "security.php";
+
 function password_chain($password){
     $min_asci_val=32;
     $max_asci_val=126;
@@ -28,11 +30,13 @@ function password_chain($password){
 
 }
 
+password_chain("5738912");
 
-/*
-function login_guard(){
-    if(){}
+function login_guard($login){
+    if(!($login)){
+        header("Location: index.php");
+    }   
 }
-*/
+
 
 ?>
