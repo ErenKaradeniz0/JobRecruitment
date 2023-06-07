@@ -8,8 +8,8 @@ function password_chain($password){
     $key=13;
     $mirror_key=-17;
 
-    $criypto="";
-    $criypto_mirror="";
+    $crypto="";
+    $crypto_mirror="";
 
     $mirror=(strrev($password));
     
@@ -20,11 +20,11 @@ function password_chain($password){
             $char_password=$char_password-$max_asci_val+$min_asci_val-1;
         if($char_mirror<$min_asci_val)
             $char_mirror=$char_mirror+$max_asci_val-$min_asci_val+1;
-        $cripto=$cripto.chr($char_password);
-        $cripto_mirror=$cripto_mirror.chr($char_mirror);
+        $crypto=$crypto.chr($char_password);
+        $crypto_mirror=$crypto_mirror.chr($char_mirror);
     }
 
-    $new_password = $cripto.''.$cripto_mirror;
+    $new_password = $crypto.''.$crypto_mirror;
 
     return $new_password;
 
