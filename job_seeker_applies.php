@@ -44,11 +44,14 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
         LEFT JOIN Cities ci ON c.cityID = ci.cityID
         LEFT JOIN Districts d ON c.districtID = d.districtID
         LEFT JOIN Applications app ON j.jobID = app.jobID
-        WHERE j.listing_status = 'Active' AND j.jobID IN (
+        WHERE j.listing_status = 'Active' 
+        AND j.jobID IN (
             SELECT jobID
             FROM Applications
             WHERE userID = $userID
-        )";
+        )
+        AND app.userID = $userID";
+
 
         $result = sqlsrv_query($conn, $sql);
 
