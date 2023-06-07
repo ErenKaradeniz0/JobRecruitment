@@ -27,6 +27,19 @@
                         <h3>Manage Job Applications</h3>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="6">
+                        <div class="filter-container">
+                                <ul class="filter-list">
+                            Filter Applications: 
+                                <a href="<?php echo $_SERVER['PHP_SELF']; ?>">All</a> | 
+                                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?status=approved">Approved</a> |
+                                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?status=rejected">Rejected</a> |
+                                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?status=pending">Pending</a> 
+                            </ul>
+                        </div>
+                        </td>
+                </tr>
 
                 <tr>
                     <th>Applicant Name</th>
@@ -90,16 +103,7 @@
 
                 sqlsrv_close($conn);
                 ?>
-<div class="filter-container">
-		
-    <ul class="filter-list">
-	Filter Applications: 
-        <a href="<?php echo $_SERVER['PHP_SELF']; ?>">All</a> | 
-        <a href="<?php echo $_SERVER['PHP_SELF']; ?>?status=approved">Approved</a> |
-        <a href="<?php echo $_SERVER['PHP_SELF']; ?>?status=rejected">Rejected</a> |
-        <a href="<?php echo $_SERVER['PHP_SELF']; ?>?status=pending">Pending</a> 
-    </ul>
-</div>
+
             </table>
         </div>
     </div>
