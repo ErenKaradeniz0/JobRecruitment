@@ -4,7 +4,6 @@
      $dbPassword = "1234";
      $dbName = "JobRecruitmentDB";
 
-    
     $connectionInfo = array("UID" => $dbUsername, "PWD" => $dbPassword, "Database"=> $dbName, "CharacterSet"=>"UTF-8","ReturnDatesAsStrings" => true);
     $conn = sqlsrv_connect( $servername, $connectionInfo);
 
@@ -16,7 +15,4 @@ if( $conn ) {
      die( print_r( sqlsrv_errors(), true));
 }
 
-
-
 ?>
-

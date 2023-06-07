@@ -1,10 +1,7 @@
 <?php 
     session_start(); 
-
     require_once 'connect_db.php' ; 
-    
     $userID = $_SESSION["userID"];
-
     $sql = "SELECT name FROM Users WHERE userID = $userID";
     
     $stmt = sqlsrv_query($conn, $sql);
@@ -17,8 +14,6 @@
     if($user_info){
         $u_name = $user_info["name"];
     }
-
-
 ?> 
 
 <!DOCTYPE html>

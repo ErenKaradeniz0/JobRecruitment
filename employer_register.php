@@ -116,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script>
 
-
      function redirectToHome() {
             window.location.href = 'index.php';
         }

@@ -41,7 +41,7 @@
                 require_once 'connect_db.php';
                 @$companyID = $_SESSION["companyID"];
 
-                $filter = ""; // Filtreleme değişkeni
+                $filter = "";
                 if (isset($_GET['status'])) {
                     $status = $_GET['status'];
                     if ($status === 'approved' || $status === 'rejected' || $status === 'pending') {
@@ -100,8 +100,6 @@
             </table>
         </div>
     </div>
-
-
 
     <script>
         function redirectToEmployer() {

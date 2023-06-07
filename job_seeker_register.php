@@ -125,7 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button>Register</button>
 
-
     </form>
 
     <script>

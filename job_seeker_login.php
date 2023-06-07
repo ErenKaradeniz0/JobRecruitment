@@ -24,11 +24,7 @@
             $error = "Invalid email or password";
         }
     }
-
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html>

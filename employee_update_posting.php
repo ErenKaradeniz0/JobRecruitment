@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         require_once 'connect_db.php';
 
-        // İş ilanını güncelleme
         $sql = "UPDATE Jobs SET job_title = ?, job_description = ?,listing_status = ? WHERE jobID = ?";
         $params = array($jobTitle, $jobDescription, $listingStatus, $jobID);
         $result = sqlsrv_query($conn, $sql, $params);

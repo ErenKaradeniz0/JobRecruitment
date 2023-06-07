@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -29,12 +28,8 @@
             <option value="Hybrid" style = "color :black;">Hybrid</option>
             <option value="On Site" style = "color :black;">On Site</option>
         </select>
-
         <button>Register</button>
-
     </form>
-
-
 </body>
 <script>
          function redirectToEmployer() {

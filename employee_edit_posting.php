@@ -4,7 +4,6 @@ if (isset($_GET['id'])) {
 
     require_once 'connect_db.php';
 
-    // İş ilanını çekme
     $sql = "SELECT * FROM Jobs WHERE jobID = ?";
     $params = array($jobID);
     $result = sqlsrv_query($conn, $sql, $params);
@@ -19,7 +18,6 @@ if (isset($_GET['id'])) {
         $jobDescription = $row['job_description'];
 		$listingStatus = $row['listing_status'];
 
-        // Düzenleme formunu gösterme
         echo '
                 <form method="post" action="employee_update_posting.php">
                     <h3>Edit Job Posting</h3>

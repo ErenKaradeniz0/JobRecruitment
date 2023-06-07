@@ -6,11 +6,8 @@ if (isset($_POST['job_title']) && isset($_POST['job_description']) && isset($_PO
 }
 
 session_start();
-
 require_once 'connect_db.php';
-
 $companyID = $_SESSION["companyID"];
-
 $sql = "SELECT * FROM Companies WHERE companyID = $companyID";
 
 $stmt = sqlsrv_query($conn, $sql);
@@ -29,7 +26,6 @@ if ($company_info) {
 $listing_date = date('Y-m-d');
 $listing_status = "Active"; 
 
-
 $sql = "INSERT INTO Jobs (companyID, cityID, districtID, job_title, job_description, listing_date, listing_status, working_type)
         VALUES ($companyID, $cityID, $districtID, '$job_title', '$job_description', '$listing_date', '$listing_status', '$working_type')";
 
@@ -39,9 +35,9 @@ if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 }
  echo "<script type='text/javascript'>
-                    alert('Job posting created successfully.');
-                    window.location = 'employer.php';
-                    </script>"; 
+    alert('Job posting created successfully.');
+    window.location = 'employer.php';
+    </script>"; 
 
 sqlsrv_close($conn);
 ?>

@@ -18,7 +18,6 @@
         $c_name = $company_info["company_name"];
     }
 
-
 ?> 
 <!DOCTYPE html>
 <html>
@@ -35,11 +34,8 @@
         <div class="shape"></div>
     </div>
 
-
-
     <form>
     
-        
         <h3>Select your Choice</h3>
 
         <button type="button" onclick="redirectToCreate()">
@@ -60,7 +56,6 @@
 
         <button type="button" onclick="redirectToHome()">Log out</button>
         
-
     </form>
 
     <script>
@@ -82,8 +77,6 @@
         function redirectToHome() {
                 window.location.href = 'index.php';
             }
-
-       
         
     </script>
 

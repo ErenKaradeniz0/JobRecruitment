@@ -5,8 +5,6 @@
     $cityId=$_SESSION["cityID"];
     $districtId=$_SESSION["districtID"];
 
-    
-
     $sql = "SELECT * FROM Districts WHERE cityID = cityId";
     
     $stmt = sqlsrv_query($conn, $sql);
@@ -18,14 +16,14 @@
     while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
         
         if($row['districtID']==$districtId){
-?>
+            
              <option selected="selected" value="<?php echo $row['districtID']; ?>" style="color:black;"><?php echo $row['district_name'];; ?></option>
-<?php
+
         }
         else{
-?>
+
             <option value="<?php echo $row['districtID'];?>" style="color:black;"><?php echo $row['district_name'];?></option>
-<?php
+
         }
     }
 

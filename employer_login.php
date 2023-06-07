@@ -1,8 +1,6 @@
 <?php 
     session_start();
-
     require_once 'connect_db.php'; 
-    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -26,7 +24,6 @@
     }
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -67,5 +64,4 @@
         }
     </script>
 </body>
-
 </html>

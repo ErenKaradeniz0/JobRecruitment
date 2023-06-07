@@ -60,8 +60,6 @@ $sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.list
             WHERE userID = $userID
         )";
 
-          
-
         $result = sqlsrv_query($conn, $sql);
 
         if ($result !== false) {

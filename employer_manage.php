@@ -1,11 +1,14 @@
 <?php
-
+session_start(); 
 require_once 'connect_db.php';
 
-// İş ilanlarını çekme
+$companyID = $_SESSION["companyID"];
+
 $sql = "SELECT j.jobID, c.company_name, j.job_title, j.job_description, j.listing_status
         FROM Jobs j
-        INNER JOIN Companies c ON j.companyID = c.companyID";
+        INNER JOIN Companies c ON j.companyID = c.companyID
+        WHERE c.companyID = $companyID";
+        
 $result = sqlsrv_query($conn, $sql);
 
 if ($result === false) {
