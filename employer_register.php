@@ -3,7 +3,6 @@
 require_once 'connect_db.php';
 
 include "security.php";
-login_guard($_SESSION["companyID"]);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cityID=$_POST['city'];
