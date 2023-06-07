@@ -8,9 +8,9 @@ if (isset($_GET['id'])) {
 
     require_once 'connect_db.php';
 
-    $sql = "SELECT * FROM Jobs WHERE jobID = ?";
+    $sql = "SELECT * FROM Jobs WHERE jobID = $jobID";
     $params = array($jobID);
-    $result = sqlsrv_query($conn, $sql, $params);
+    $result = sqlsrv_query($conn, $sql);
 
     if ($result === false) {
         die(print_r(sqlsrv_errors(), true));

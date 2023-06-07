@@ -13,9 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         require_once 'connect_db.php';
 
-        $sql = "UPDATE Jobs SET job_title = ?, job_description = ?,listing_status = ? WHERE jobID = ?";
-        $params = array($jobTitle, $jobDescription, $listingStatus, $jobID);
-        $result = sqlsrv_query($conn, $sql, $params);
+        $sql = "UPDATE Jobs SET job_title = $jobTitle, job_description = $jobDescription, listing_status = $listingStatus WHERE jobID = $jobID";
+        $result = sqlsrv_query($conn, $sql);
 
         if ($result === false) {
             die(print_r(sqlsrv_errors(), true));
