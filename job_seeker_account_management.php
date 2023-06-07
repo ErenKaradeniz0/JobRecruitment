@@ -142,7 +142,7 @@
     </div>
     
     <label for="">Phone</label>
-    <input type="tel" value="<?php echo $u_phone;?>" id="phone" name="phone" minlength="10" maxlength="11" required>
+    <input type="text" value="<?php echo $u_phone;?>" pattern="[0-9]{}" id="phone" name="phone"  maxlength="11" required>
     
     <label for="">Birth Date</label>
     <input type="date" value="<?php echo $u_birth_date; ?>" id="birth_date" name="birth_date" required>

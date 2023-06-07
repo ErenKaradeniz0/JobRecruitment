@@ -63,7 +63,7 @@ form{
   width: 70%;
   margin: 0 auto;
   position: relative;
-  height: 700px;
+  height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,6 +98,23 @@ table th {
   text-align: left;
   background-color: hsla(0, 0%, 100%, 0.537);
   color: rgb(0, 0, 0);
+}
+
+#search_form{
+  width: auto;
+  background-color: initial;
+  position: static;
+  left: initial;
+  top: initial;
+  transform: initial;
+  border-radius: initial;
+  backdrop-filter: initial;
+  border: initial;
+  box-shadow: initial;
+  padding: initial;
+  display: initial;
+  flex-direction: initial;
+  justify-content: initial;
 }
 
 h3{
@@ -191,7 +208,7 @@ input[type= "radio"]{
   margin: 0px;
   font-size: 17px;
   float: left;
-  width: 70%;
+  width: 85%;
 }
 
 #search_button {
@@ -200,7 +217,7 @@ input[type= "radio"]{
   margin-top: 0px;
   height: 100%;
   float: left;
-  width: 20%;
+  width: 15%;
 
   background: #2196F3;
   color: white;

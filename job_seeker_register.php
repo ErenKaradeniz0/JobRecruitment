@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Job Seeker Register</title>
     <link rel="stylesheet" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -78,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="name-container">
             <label for="name">Name</label>
-            <input type="text" placeholder="Eren" id="name" name="name" required>
+            <input type="text" placeholder="Eren" id="name" name="name"  required>
 
             <label for="surname">Surname</label>
             <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
@@ -99,8 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="gender-female">Female</label>
         </div>
 
-        <label for="tel">Phone</label>
-        <input type="tel" placeholder="Phone" id="phone" name="phone" minlength="10" maxlength="11" required>
+        <label for="phone">Phone</label>
+        <input type="text" placeholder="Phone" name="Phone" pattern="[0-9]{}" maxlength="10" title="Please enter a numeric phone number" required>
+
 
         <label for="">Birth Date</label>
         <input type="date" placeholder="00/00/0000" id="birth_date" name="birth_date" required>
@@ -138,6 +140,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <script>
+
+    $(document).ready(function() {
+            $('$phone').on('input', function() {
+                var phoneNumber = $(this).val();
+
+                // Use regex to check if the phone number consists of only digits
+                var regex = /^[0-9]+$/;
+                if (!regex.test(phoneNumber)) {
+                    alert('Please use only digits.');
+                }
+            });
+        });
+
     var citySelect = document.getElementById("city");
     var districtSelect = document.getElementById("district");
 

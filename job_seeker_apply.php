@@ -14,29 +14,31 @@
 <div class="table-container">
   <div class="table-scroll">
       <table>
-        <tr>
-            <td>
-                <button type="button" onclick="redirectToJobSeeker()">Go job seeker main page</button>
-            </td>
-            
-                <tr>
-            <td>
-                <button type="button" onclick="redirectToApplies()">My Applications</button>
-            </td>
-        </tr>
-        </tr>
-        <tr>
-            <td>
-                <h3>Job Postings</h3>
-            </td>
-        <tr>
-            <td>
-            <form method="GET">
-                    <input  id="search_input" type="text" placeholder="Search.." name="search_input">
-                    <button id="search_button" name="search_button" type="submit"><i class="fa fa-search"></i></button>
-            </td>
-        </tr>
-        </tr>
+    <tr>
+     
+            <form id="search_form" style="" method="GET">
+               <td>
+                <input id="search_input" type="text" placeholder="Search.." name="search_input">
+                <button id="search_button" name="search_button" type="submit"><i class="fa fa-search"></i></button>
+                 </td>
+            </form>
+       
+    </tr>
+    <tr>
+        <td>
+            <button type="button" onclick="redirectToJobSeeker()">Go to job seeker main page</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" onclick="redirectToApplies()">My Applications</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3>Job Postings</h3>
+        </td>
+
 
         <?php
         
