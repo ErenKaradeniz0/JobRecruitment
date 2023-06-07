@@ -1,7 +1,7 @@
 <?php
-     $servername = "Eren\SQLEXPRESS";
+     $servername = "DESKTOP-VQPCNFV\SQLSERVER2022";
      $dbUsername = "sa";
-     $dbPassword = "1234";
+     $dbPassword = "admin123";
      $dbName = "JobRecruitmentDB";
 
     
