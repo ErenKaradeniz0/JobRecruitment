@@ -1,11 +1,16 @@
 <?php 
     session_start();
-    require_once 'connect_db.php'; 
+    require_once 'connect_db.php';
+    
+    include "security.php";
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sql = "SELECT companyID FROM Companies WHERE email = '$email' AND password = '$password'";
+        $safe_password=password_chain($password);
+
+        $sql = "SELECT companyID FROM Companies WHERE email = '$email' AND password = '$safe_password'";
         $stmt = sqlsrv_query($conn, $sql);
 
         if ($stmt === false) {

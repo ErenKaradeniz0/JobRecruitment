@@ -2,12 +2,16 @@
     session_start();
 
     require_once 'connect_db.php'; 
-    
+
+    include "security.php";
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
+        
+        $safe_password=password_chain($password);
 
-        $sql = "SELECT userID FROM Users WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT userID FROM Users WHERE email = '$email' AND password = '$safe_password'";
         $stmt = sqlsrv_query($conn, $sql);
 
         if ($stmt === false) {
@@ -24,6 +28,7 @@
             $error = "Invalid email or password";
         }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,3 +72,4 @@
 </body>
 
 </html>
+

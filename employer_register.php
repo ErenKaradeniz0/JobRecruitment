@@ -2,6 +2,8 @@
 
 require_once 'connect_db.php';
 
+include "security.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cityID=$_POST['city'];
     $districtID=$_POST['district'];
@@ -11,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $phone = $_POST['phone'];
     @$address=$_POST['address'];
+
+    $safe_password=password_chain($password);
     
     $message="You did not choose ";
     if($cityID==0){
@@ -35,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         else
         {
             $reg = "INSERT INTO Companies (cityID,districtID,company_name,website,email,password,phone,address)
-                            VALUES ($cityID,$districtID,'$company_name','$website','$email','$password','$phone','$address')";
+                            VALUES ($cityID,$districtID,'$company_name','$website','$email','$safe_password','$phone','$address')";
             if(sqlsrv_query($conn,$reg)){
                 header("Location: employer_login.php");
             }

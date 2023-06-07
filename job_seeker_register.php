@@ -1,6 +1,9 @@
 <?php 
 
-require_once 'connect_db.php';
+    require_once 'connect_db.php';
+
+    include "security.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -13,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $city=$_POST['city'];
     $district=$_POST['district'];
     @$address=$_POST['address'];
+    
+    $safe_password=password_chain($password);
 
     $message="You did not choose ";
     if($city==0){
@@ -39,15 +44,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             
             $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
-                            VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birth_date','$gender')";
+                            VALUES ($city,$district,'$name','$surname','$safe_password','$email','$phone','$address','$birth_date','$gender')";
             if(sqlsrv_query($conn,$reg)){
                 header("Location: job_seeker_login.php");
             }
-            else
+            else{
                 echo "<script type='text/javascript'>
                 alert('ERROR');
                 </script>";
-            
+            }
+                
         }
     }else{
         echo "<script type='text/javascript'>
@@ -63,7 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Job Seeker Register</title>
     <link rel="stylesheet" href="style.css">
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -79,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="name-container">
             <label for="name">Name</label>
-            <input type="text" placeholder="Eren" id="name" name="name"  required>
+            <input type="text" placeholder="Eren" id="name" name="name" required>
 
             <label for="surname">Surname</label>
             <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
@@ -100,9 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="gender-female">Female</label>
         </div>
 
-        <label for="phone">Phone</label>
-        <input type="text" placeholder="Phone" name="Phone" pattern="[0-9]{}" maxlength="10" title="Please enter a numeric phone number" required>
-
+        <label for="tel">Phone</label>
+        <input type="tel" placeholder="Phone" id="phone" name="phone" minlength="10" maxlength="11" required>
 
         <label for="">Birth Date</label>
         <input type="date" placeholder="00/00/0000" id="birth_date" name="birth_date" required>
@@ -140,19 +144,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <script>
-
-    $(document).ready(function() {
-            $('$phone').on('input', function() {
-                var phoneNumber = $(this).val();
-
-                // Use regex to check if the phone number consists of only digits
-                var regex = /^[0-9]+$/;
-                if (!regex.test(phoneNumber)) {
-                    alert('Please use only digits.');
-                }
-            });
-        });
-
     var citySelect = document.getElementById("city");
     var districtSelect = document.getElementById("district");
 
