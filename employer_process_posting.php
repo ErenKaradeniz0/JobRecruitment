@@ -30,8 +30,8 @@ if ($company_info) {
 $listing_date = date('Y-m-d');
 $listing_status = "Active"; 
 
-$sql = "INSERT INTO Jobs (companyID, cityID, districtID, job_title, job_description, listing_date, listing_status, working_type)
-        VALUES ($companyID, $cityID, $districtID, '$job_title', '$job_description', '$listing_date', '$listing_status', '$working_type')";
+$sql = "INSERT INTO Jobs (companyID, job_title, job_description, listing_date, listing_status, working_type)
+        VALUES ($companyID, '$job_title', '$job_description', '$listing_date', '$listing_status', '$working_type')";
 
 $stmt = sqlsrv_query($conn, $sql);
 
