@@ -8,8 +8,8 @@ function password_chain($password){
     $key=13;
     $mirror_key=-17;
 
-    $cripto="";
-    $cripto_mirror="";
+    $criypto="";
+    $criypto_mirror="";
 
     $mirror=(strrev($password));
     
@@ -30,7 +30,7 @@ function password_chain($password){
 
 }
 
-password_chain("5738912");
+//password_chain("5738912");
 
 function login_guard($login){
     if(!($login)){

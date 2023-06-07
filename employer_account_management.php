@@ -3,6 +3,9 @@
     require_once 'connect_db.php' ;  
     @$companyID = $_SESSION["companyID"];
 
+    include "security.php";
+    login_guard($_SESSION["companyID"]); 
+
     $sql = "SELECT c.companyID, c.cityID, c.districtID, c.company_name, c.website, c.email, c.password, c.phone, c.address, t.city_name, d.district_name
             FROM Companies c 
             JOIN Cities t ON c.cityID = t.cityID 
@@ -44,8 +47,10 @@
             $up_districtId=$_POST['district'];
             @$up_address=$_POST['other_address'];
 
+            $safe_password=password_chain($up_password);
+
             
-            $sql = "UPDATE Companies SET company_name='$up_company_name', website='$up_website', email='$up_email',password='$up_password',
+            $sql = "UPDATE Companies SET company_name='$up_company_name', website='$up_website', email='$up_email',password='$safe_password',
                     phone='$up_phone', cityID=$up_cityId, districtID=$up_districtId  
                     WHERE companyID=$companyID";
         

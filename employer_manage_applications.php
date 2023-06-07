@@ -41,6 +41,9 @@
                 require_once 'connect_db.php';
                 @$companyID = $_SESSION["companyID"];
 
+                include "security.php";
+                login_guard($_SESSION["userID"]);  
+
                 $filter = "";
                 if (isset($_GET['status'])) {
                     $status = $_GET['status'];

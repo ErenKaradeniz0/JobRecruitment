@@ -2,6 +2,9 @@
 session_start(); 
 require_once 'connect_db.php';
 
+include "security.php";
+login_guard($_SESSION["companyID"]);
+
 $companyID = $_SESSION["companyID"];
 
 $sql = "SELECT j.jobID, c.company_name, j.job_title, j.job_description, j.listing_status

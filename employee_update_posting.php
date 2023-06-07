@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+include "security.php";
+login_guard($_SESSION["userID"]); 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['jobID']) && isset($_POST['jobTitle']) && isset($_POST['jobDescription']) && isset($_POST['listingStatus'])) {
         $jobID = $_POST['jobID'];

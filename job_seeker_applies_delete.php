@@ -1,6 +1,9 @@
 <?php
 @session_start();
 
+include "security.php";
+login_guard($_SESSION["userID"]);
+
 if (!isset($_SESSION['userID'])) {
     header("Location: login.php");
     exit();
@@ -12,6 +15,7 @@ if (!isset($_GET['id'])) {
 }
 
 require_once 'connect_db.php';
+
 $userID = $_SESSION['userID'];
 $jobID = $_GET['id'];
 

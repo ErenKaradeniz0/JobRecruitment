@@ -45,6 +45,9 @@
         session_start();
         require_once 'connect_db.php';
         @$userID = $_SESSION["userID"];  
+
+        include "security.php";
+        login_guard($userID);
         
         if(isset($_GET["search_button"])){
             $search=$_GET["search_input"];

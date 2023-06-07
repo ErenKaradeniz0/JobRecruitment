@@ -1,7 +1,12 @@
 <?php 
     session_start(); 
     require_once 'connect_db.php' ; 
-    $userID = $_SESSION["userID"];
+    @$userID = $_SESSION["userID"];
+
+    include "security.php";
+    login_guard($_SESSION["userID"]);
+
+    $_SESSION["userID"];
     $sql = "SELECT name FROM Users WHERE userID = $userID";
     
     $stmt = sqlsrv_query($conn, $sql);

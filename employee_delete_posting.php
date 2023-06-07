@@ -1,4 +1,9 @@
 <?php
+session_start();
+include "security.php";
+
+login_guard($_SESSION["userID"]); 
+
 if (isset($_GET['id'])) {
     $jobID = $_GET['id'];
     

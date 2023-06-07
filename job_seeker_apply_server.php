@@ -1,7 +1,10 @@
 <?php
     @session_start();  
-    require_once 'connect_db.php' ;  
-   
+    require_once 'connect_db.php' ; 
+    
+    include "security.php";
+    login_guard($_SESSION["userID"]);
+
 if (isset($_GET['id'])) {
     $jobID = $_GET['id'];
 

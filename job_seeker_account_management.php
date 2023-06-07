@@ -3,6 +3,10 @@
     require_once 'connect_db.php' ;  
     @$userID = $_SESSION["userID"];
 
+    include "security.php";
+    login_guard($_SESSION["userID"]);
+
+
     $sql = "SELECT u.userID, u.cityID, u.districtID, u.name, u.surname, u.password, u.email,
             u.phone, u.address, u.birth_date,u.gender, c.city_name, d.district_name
             FROM Users u 
@@ -56,8 +60,10 @@
             $up_districtId=$_POST['district'];
             @$up_address=$_POST['address'];
 
+            $safe_password=password_chain($up_password);
+
             
-            $sql = "UPDATE Users SET name='$up_name', surname='$up_surname', email='$up_email',password='$up_password', 
+            $sql = "UPDATE Users SET name='$up_name', surname='$up_surname', email='$up_email',password='$safe_password', 
                     gender='$up_gender', phone='$up_phone', birth_date='$up_birth_date', cityID=$up_cityId, districtID=$up_districtId  
                     WHERE userID=$userID";
         
