@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
                     <label>Job Title:</label>
                     <input type="text" name="jobTitle" value="'.$jobTitle.'"><br>
                     <label>Job Description:</label>
-                    <textarea name="jobDescription">'.$jobDescription.'</textarea><br>
+                    <input type="text" name="jobDescription" value="'.$jobDescription.'"><br>
                     <label>Listing Status:</label>
                     <select name="listingStatus">
                         <option style="color:black;" value="Active" '.($listingStatus == "Active" ? ' selected' : '').'>Active</option>

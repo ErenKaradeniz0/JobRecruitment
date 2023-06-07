@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birth_date=$_POST['birth_date'];
     $city=$_POST['city'];
     $district=$_POST['district'];
-    @$address=$_POST['other_address'];
+    @$address=$_POST['address'];
 
     $message="You did not choose ";
     if($city==0){
@@ -93,13 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="gender-container">
             <label for="gender"> Gender : </label>
-            <input type="radio" id="gender-male" name="gender" value="Male">
+            <input type="radio" id="gender-male" name="gender" value="Male" required>
             <label for="gender-male">Male</label>
-            <input type="radio" id="gender-female" name="gender" value="Female">
+            <input type="radio" id="gender-female" name="gender" value="Female" required>
             <label for="gender-female">Female</label>
         </div>
 
-        <label for="">Phone</label>
+        <label for="tel">Phone</label>
         <input type="tel" placeholder="Phone" id="phone" name="phone" minlength="10" maxlength="11" required>
 
         <label for="">Birth Date</label>
@@ -120,10 +120,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
         </div>
 
-        <label for="other">Other Address:</label>
-        <textarea id="other" name="other_address" rows="4" cols="30"></textarea>
+        <label for="address">Address:</label>
+        <input name="address" placeholder="Address" required></input>
 
         <button>Register</button>
+
 
     </form>
 

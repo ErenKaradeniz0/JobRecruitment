@@ -101,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
         </div>
 
-        <label for="address">Other Address:</label>
-        <textarea id="address" name="address" rows="4" cols="30"></textarea>
+        <label for="address">Address:</label>
+        <input name="address" placeholder="Address" required></input>
 
         <button>Register</button>
 

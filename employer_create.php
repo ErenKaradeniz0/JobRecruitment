@@ -20,7 +20,7 @@
         <input type="text" id="job_title" name="job_title" required>
 
         <label for="job_description">Job Description:</label>
-        <textarea id="job_description" name="job_description" required></textarea>
+        <input id="job_description" name="job_description" required></textarea>
 
         <label for="working_type">Working Type:</label>
         <select id="working_type" name="working_type">

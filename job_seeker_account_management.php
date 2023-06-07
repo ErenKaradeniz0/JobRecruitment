@@ -54,7 +54,7 @@
             $up_birth_date=$_POST['birth_date'];
             $up_cityId=$_POST['city'];
             $up_districtId=$_POST['district'];
-            @$up_address=$_POST['other_address'];
+            @$up_address=$_POST['address'];
 
             
             $sql = "UPDATE Users SET name='$up_name', surname='$up_surname', email='$up_email',password='$up_password', 
@@ -76,34 +76,27 @@
     }
 
         if (isset($_POST["Delete"])) {
-            $query = "DELETE A
-            FROM Applications A
-            JOIN Users U ON A.userID = U.userID
-            WHERE U.userID = $userID;
-
-            DELETE U
-            From Users U
-            Where A.userID = $userID;
-            ";
-            $result = sqlsrv_query($conn, $query);
-            
-            if ($result === false) {
-                $errors = sqlsrv_errors();
-                foreach ($errors as $error) {
-                    echo "Query 1 Error: " . $error['message'] . "<br>";
-                }
-            }
-            if ($result) {
-                $message = "Deletion completed successfully.";
-                header("Location: index.php?message=" . urlencode($message));
-                exit();
-            } else {
-                    echo "<script type='text/javascript'>
+    $query = "DELETE FROM Applications WHERE userID = $userID; 
+              DELETE FROM Users WHERE userID = $userID;";
+    $result = sqlsrv_query($conn, $query);
+    
+    if ($result === false) {
+        $errors = sqlsrv_errors();
+        foreach ($errors as $error) {
+            echo "Query Error: " . $error['message'] . "<br>";
+        }
+    }
+    if ($result) {
+        $message = "Deletion completed successfully.";
+        header("Location: index.php?message=" . urlencode($message));
+        exit();
+    } else {
+        echo "<script type='text/javascript'>
             alert('Deletion failed');
             window.location = 'job_seeker_account_management.php';
             </script>"; 
-            }
     }
+}
 
 ?>
 
@@ -142,9 +135,9 @@
     
     <div class="gender-container">
         <label for="gender"> Gender : </label>
-        <input type="radio" id="gender-male" name="gender" value="Male" ng-model='genderValue' <?php echo @$male;?>>
+        <input type="radio" id="gender-male" name="gender" value="Male" ng-model='genderValue' <?php echo @$male;?> required>
         <label for="gender-male">Male</label>
-        <input type="radio" id="gender-female" name="gender" value="Female" <?php echo @$female;?>>
+        <input type="radio" id="gender-female" name="gender" value="Female" <?php echo @$female;?> required>
         <label for="gender-female">Female</label>
     </div>
     
@@ -168,8 +161,9 @@
         </select>
     </div>
     
-    <label for="other">Other Address:</label>
-    <textarea id="other" name="other_address" rows="4" cols="30"><?php echo $u_address;?></textarea>
+    <label for="address">Address:</label>
+    <input name="address" placeholder="Address" value = "<?php echo $u_address;?>" required></input>
+    
     
     <button type="submit" name="Update">Save</button>
     <button type="button" onclick="redirectToJobSeeker()">Main page</button>

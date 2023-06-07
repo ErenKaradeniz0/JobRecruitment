@@ -147,8 +147,8 @@
             </select>
         </div>
 
-        <label for="address">Other Address:</label>
-        <textarea id="address" name="address" rows="4" cols="30"><?php echo $c_address;?></textarea>
+    <label for="address">Address:</label>
+    <input name="address" placeholder="Address" value = "<?php echo $c_address;?>" required></input>
 
         <button type="submit" name="Update">Save</button>
     <button type="button" onclick="redirectToJobSeeker()">Main page</button>
