@@ -2,7 +2,7 @@
 session_start();
 include "security.php";
 
-login_guard($_SESSION["userID"]); 
+login_guard($_SESSION["companyID"]); 
 
 if (isset($_GET['id'])) {
     $jobID = $_GET['id'];
