@@ -131,7 +131,7 @@
         <input type="password" value="<?php echo $c_password;?>" placeholder="Password" id="password" name="password" required>
 
         <label for="">Phone</label>
-        <input type="tel" value="<?php echo $c_phone;?>" placeholder="05511375555" id="phone" name="phone" required>
+        <input type="tel" value="<?php echo $c_phone;?>" placeholder="05511375555" id="phone" name="phone" minlength="10" maxlength="11" required>
         
         <div class="address-container">
             <label for="city">City</label>

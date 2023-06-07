@@ -41,7 +41,7 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_d
         ) a ON j.jobID = a.jobID
         LEFT JOIN Cities ci ON c.cityID = ci.cityID
         LEFT JOIN Districts d ON c.districtID = d.districtID
-        WHERE j.jobID IN (
+        WHERE j.listing_status = 'Active' AND j.jobID IN (
             SELECT jobID
             FROM Applications
             WHERE userID = $userID

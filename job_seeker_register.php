@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     @$gender = $_POST['gender'];
     $phone = $_POST['phone'];
-    $birthdate=$_POST['birthdate'];
+    $birth_date=$_POST['birth_date'];
     $city=$_POST['city'];
     $district=$_POST['district'];
     @$address=$_POST['other_address'];
@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else $cont_district=true;
     
     if($cont_city AND $cont_district){
-        ECHO "OWW NOOO";
         $sql = "SELECT * FROM Users WHERE email = '$email'";
         $stmt = sqlsrv_query($conn, $sql);
         $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
@@ -40,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             
             $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
-                            VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
+                            VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birth_date','$gender')";
             if(sqlsrv_query($conn,$reg)){
                 header("Location: job_seeker_login.php");
             }
@@ -104,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="tel" placeholder="Phone" id="phone" name="phone" minlength="10" maxlength="11" required>
 
         <label for="">Birth Date</label>
-        <input type="date" placeholder="00/00/0000" id="birth_date" name="birthdate" required>
+        <input type="date" placeholder="00/00/0000" id="birth_date" name="birth_date" required>
 
         <div class="address-container">
             <label for="city">City</label>

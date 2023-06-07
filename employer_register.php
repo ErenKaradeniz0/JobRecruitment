@@ -83,7 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" placeholder="Password" id="password" name="password" required>
 
         <label for="">Phone</label>
-        <input type="tel" placeholder="05511375555" id="phone" name="phone" required>
+        <input type="tel" placeholder="Phone" id="phone" name="phone" minlength="10" maxlength="11" required>
+
         
         <div class="address-container">
             <label for="city">City</label>
