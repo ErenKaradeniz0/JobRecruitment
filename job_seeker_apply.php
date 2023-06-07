@@ -31,20 +31,25 @@
             </td>
         <tr>
             <td>
-    <input  id="search_input" type="text" placeholder="Search.." name="search">
-     <button id="search_button" type="submit"><i class="fa fa-search"></i></button>
+            <form method="GET">
+                    <input  id="search_input" type="text" placeholder="Search.." name="search_input">
+                    <button id="search_button" name="search_button" type="submit"><i class="fa fa-search"></i></button>
             </td>
         </tr>
         </tr>
 
         <?php
-        @session_start();
-         
+        
+        session_start();
         require_once 'connect_db.php';
-        @$userID = $_SESSION["userID"];
+        @$userID = $_SESSION["userID"];  
+        
+        if(isset($_GET["search_button"])){
+            $search=$_GET["search_input"];
+        }   
 
 
-$sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
+        @$sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0) AS application_count
         FROM Jobs j
         JOIN Companies c ON j.companyID = c.companyID
         LEFT JOIN (
@@ -58,10 +63,20 @@ $sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.list
             SELECT jobID
             FROM Applications
             WHERE userID = $userID
+        ) AND (
+		j.jobID LIKE '%$search%'
+		OR j.job_title LIKE '%$search%'
+		OR j.listing_status LIKE '%$search%'
+		OR j.job_description LIKE '%$search%'
+		OR j.listing_date LIKE '%$search%'
+		OR j.working_type LIKE '%$search%'
+		OR c.company_name LIKE '%$search%'
+		OR ci.city_name LIKE '%$search%'
+		OR d.district_name LIKE '%$search%'
         )";
 
         $result = sqlsrv_query($conn, $sql);
-
+            
         if ($result !== false) {
 
             while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
@@ -72,7 +87,7 @@ $sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.list
                 $city_name = $row['city_name'];
                 $district_name = $row['district_name'];
                 $count= $row['application_count'];
-                $c= $row['application_count'];
+                $working_type= $row['working_type'];
 
 
                 echo '<tr>';
@@ -80,6 +95,7 @@ $sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.list
                 echo '<h1>' . $jobTitle . '</h1>';
                 echo '<p>Company: ' . $companyName , " ($city_name/$district_name)" . '</p>';
                 echo '<p>Description: ' . $description . '</p>';
+                echo '<p>Working type: ' . $working_type . '</p>';
                 echo '<p>Number of applicants: ' . $count . '</p>';
                 echo '<a href="job_seeker_apply_server.php?id=' . $jobID . '">Apply Now</a>';
                 echo '</td>';
