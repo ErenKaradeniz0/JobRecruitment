@@ -4,7 +4,6 @@
     
     $cityId=$_SESSION["cityID"];
     $districtId=$_SESSION["districtID"];
-    echo $cityId;
 
     
 

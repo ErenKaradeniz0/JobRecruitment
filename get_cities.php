@@ -1,5 +1,6 @@
 <?php 
-    require_once 'connect_db.php';
+   require_once 'connect_db.php'; 
+
     $sql = "SELECT * FROM Cities"; 
     $stmt = sqlsrv_query($conn, $sql);
     if ($stmt === false) {

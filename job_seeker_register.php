@@ -13,26 +13,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $city=$_POST['city'];
     $district=$_POST['district'];
     @$address=$_POST['other_address'];
+
+    $message="You did not choose ";
+    if($city==0){
+        $cont_city=false;   
+        $message=$message."a city ";
+       } else $cont_city=true;
+
+    if($district==0){
+        $cont_district=false;
+        if(!($cont_city))
+            $message=$message."and ";
+            $message=$message."district";
+    } else $cont_district=true;
     
-    $sql = "SELECT * FROM Users WHERE email = '$email'";
-    $stmt = sqlsrv_query($conn, $sql);
-    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-    if($row)
-    {
-        echo "This email is already exist.";
-    }
-    else
-    {
-        $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
-                        VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
-        if(sqlsrv_query($conn,$reg)){
-            header("Location: job_seeker_login.php");
+    if($cont_city AND $cont_district){
+        ECHO "OWW NOOO";
+        $sql = "SELECT * FROM Users WHERE email = '$email'";
+        $stmt = sqlsrv_query($conn, $sql);
+        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        if($row)
+        {
+            echo "This email is already exist.";
         }
         else
-            echo "ERROR";
-        
+        {
+            
+            $reg = "INSERT INTO Users (cityID,districtID,name,surname,password,email,phone,address,birth_date,gender)
+                            VALUES ($city,$district,'$name','$surname','$password','$email','$phone','$address','$birthdate','$gender')";
+            if(sqlsrv_query($conn,$reg)){
+                header("Location: job_seeker_login.php");
+            }
+            else
+                echo "<script type='text/javascript'>
+                alert('ERROR');
+                </script>";
+            
+        }
+    }else{
+        echo "<script type='text/javascript'>
+                alert('".$message."');
+                </script>";
     }
-
     
 }
 ?>
@@ -63,9 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" placeholder="Karadeniz" id="surname" name="surname" required>
         </div>
 
-
-
-
         <label for="">Email</label>
         <input type="email" placeholder="Email" id="email" name="email" required>
 
@@ -82,10 +101,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <label for="">Phone</label>
-        <input type="tel" placeholder="05511375555" id="phone" name="phone" required>
+        <input type="tel" placeholder="Phone" id="phone" name="phone" minlength="10" maxlength="11" required>
 
         <label for="">Birth Date</label>
-        <input type="date" placeholder="11/11/2002" id="birth_date" name="birthdate" required>
+        <input type="date" placeholder="00/00/0000" id="birth_date" name="birthdate" required>
 
         <div class="address-container">
             <label for="city">City</label>

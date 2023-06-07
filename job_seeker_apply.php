@@ -44,7 +44,7 @@
         @$userID = $_SESSION["userID"];
 
 
-$sql = "SELECT j.jobID, j.companyID, j.job_title, j.listing_status, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
+$sql = "SELECT j.jobID, j.job_title, j.listing_status, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0)     AS application_count
         FROM Jobs j
         JOIN Companies c ON j.companyID = c.companyID
         LEFT JOIN (
@@ -74,6 +74,7 @@ $sql = "SELECT j.jobID, j.companyID, j.job_title, j.listing_status, j.job_descri
                 $city_name = $row['city_name'];
                 $district_name = $row['district_name'];
                 $count= $row['application_count'];
+                $c= $row['application_count'];
 
 
                 echo '<tr>';

@@ -157,8 +157,8 @@
     <div class="address-container">
         <label for="city">City</label>
         <select name="city" id="city">
-            <option selected=" selected" value="<?php echo $u_city_id; ?>" style="color:black;"><?php echo $c_city_name; ?></option>
-            <?php include "get_cities.php";?>
+            
+            <?php include "get_cities2.php";?>
         </select>
     
     

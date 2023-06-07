@@ -12,25 +12,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     @$address=$_POST['address'];
     
-    $sql = "SELECT * FROM Companies WHERE email = '$email'";
-    $stmt = sqlsrv_query($conn, $sql);
-    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-    if($row)
-    {
-        echo "This email is already exist.";
-    }
-    else
-    {
-        $reg = "INSERT INTO Companies (cityID,districtID,company_name,website,email,password,phone,address)
-                        VALUES ($cityID,$districtID,'$company_name','$website','$email','$password','$phone','$address')";
-        if(sqlsrv_query($conn,$reg)){
-            header("Location: employer_login.php");
+    $message="You did not choose ";
+    if($cityID==0){
+        $cont_city=false;   
+        $message=$message."a city ";
+       } else $cont_city=true;
+
+    if($districtID==0){
+        $cont_district=false;
+        if(!($cont_city))
+            $message=$message."and ";
+            $message=$message."district";
+    } else $cont_district=true;
+    if($cont_city AND $cont_district){
+        $sql = "SELECT * FROM Companies WHERE email = '$email'";
+        $stmt = sqlsrv_query($conn, $sql);
+        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        if($row)
+        {
+            echo "This email is already exist.";
         }
         else
-            echo "ERROR";
-        
+        {
+            $reg = "INSERT INTO Companies (cityID,districtID,company_name,website,email,password,phone,address)
+                            VALUES ($cityID,$districtID,'$company_name','$website','$email','$password','$phone','$address')";
+            if(sqlsrv_query($conn,$reg)){
+                header("Location: employer_login.php");
+            }
+            else
+                echo "ERROR";
+            
+        }
+    }else{
+        echo "<script type='text/javascript'>
+                alert('".$message."');
+                </script>";
     }
-
     
 }
 ?>
