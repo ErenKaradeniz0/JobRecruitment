@@ -23,7 +23,7 @@
 <html>
 
 <head>
-    <title>User Selection</title>
+    <title>Transactions</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -35,7 +35,7 @@
     </div>
 
     <form>
-    
+        <h3>Welcome, <?php echo $c_name;?> managers </h3>
         <h3>Select your Choice</h3>
 
         <button type="button" onclick="redirectToCreate()">

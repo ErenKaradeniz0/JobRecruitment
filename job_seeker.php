@@ -26,7 +26,7 @@
 
 <head>
   
-    <title>User Selection</title>
+    <title>Job Seeker Main Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
