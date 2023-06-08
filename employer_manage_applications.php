@@ -55,7 +55,7 @@
                 @$companyID = $_SESSION["companyID"];
 
                 include "security.php";
-                login_guard($_SESSION["companyID"]);  
+                login_guard($_SESSION["login"]);  
 
                 $filter = "";
                 if (isset($_GET['status'])) {

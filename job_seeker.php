@@ -4,7 +4,7 @@
     @$userID = $_SESSION["userID"];
 
     include "security.php";
-    login_guard($_SESSION["userID"]);
+    login_guard($_SESSION["login"]);
 
     $_SESSION["userID"];
     $sql = "SELECT name FROM Users WHERE userID = $userID";

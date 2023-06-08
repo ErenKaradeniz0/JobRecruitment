@@ -31,7 +31,7 @@
         @$userID = $_SESSION["userID"];
 
         include "security.php";
-        login_guard($_SESSION["userID"]);
+        login_guard($_SESSION["login"]);
 
 $sql = "SELECT j.jobID, j.companyID, j.job_title, j.job_description, j.listing_date, j.working_type, c.company_name, ci.city_name, d.district_name, COALESCE(a.row_count, 0) AS application_count, app.application_status
         FROM Jobs j

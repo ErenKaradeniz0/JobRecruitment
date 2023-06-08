@@ -1,4 +1,6 @@
 <?php
+include "security.php";
+login_guard($_SESSION["login"]);
 require_once 'connect_db.php';
 $applicationID = $_GET['id'];
 

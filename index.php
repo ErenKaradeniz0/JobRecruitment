@@ -1,7 +1,6 @@
 <?php
 session_start();
-$_SESSION["userID"]=false;
-$_SESSION["companyID"]=false;
+$_SESSION["login"]=false;
 
 if (isset($_GET['message'])) {
     $message = $_GET['message'];

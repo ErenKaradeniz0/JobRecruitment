@@ -3,7 +3,7 @@
     require_once 'connect_db.php' ; 
     
     include "security.php";
-    login_guard($_SESSION["userID"]);
+    login_guard($_SESSION["login"]);
 
 if (isset($_GET['id'])) {
     $jobID = $_GET['id'];

@@ -47,7 +47,7 @@
         @$userID = $_SESSION["userID"];  
 
         include "security.php";
-        login_guard($userID);
+        login_guard($_SESSION["login"]);
         
         if(isset($_GET["search_button"])){
             $search=$_GET["search_input"];

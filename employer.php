@@ -3,6 +3,9 @@
 
     require_once 'connect_db.php' ; 
     
+    include "security.php";
+    login_guard($_SESSION["login"]);
+    
     $companyID = $_SESSION["companyID"];
 
     $sql = "SELECT company_name FROM Companies WHERE companyID = $companyID";

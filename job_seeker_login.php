@@ -22,6 +22,7 @@
 
         if ($row) {
             $_SESSION["userID"] = $row["userID"];
+            $_SESSION["login"]=true;
             header("Location: job_seeker.php");
             exit();
         } else {

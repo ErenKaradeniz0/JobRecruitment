@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include "security.php";
+login_guard($_SESSION["login"]);
+
+?>
+
 <!DOCTYPE html>
 <html>
 

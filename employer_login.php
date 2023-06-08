@@ -21,6 +21,7 @@
 
         if ($row) {
             $_SESSION["companyID"] = $row["companyID"];
+            $_SESSION["login"]=true;
             header("Location: employer.php");
             exit();
         } else {

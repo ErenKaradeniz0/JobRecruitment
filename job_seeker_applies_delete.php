@@ -2,7 +2,7 @@
 @session_start();
 
 include "security.php";
-login_guard($_SESSION["userID"]);
+login_guard($_SESSION["login"]);
 
 if (!isset($_SESSION['userID'])) {
     header("Location: login.php");

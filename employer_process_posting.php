@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "security.php";
-login_guard($_SESSION["companyID"]);
+login_guard($_SESSION["login"]);
 
 if (isset($_POST['job_title']) && isset($_POST['job_description']) && isset($_POST['working_type'])) {
     $job_title = $_POST['job_title'];

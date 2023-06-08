@@ -4,8 +4,7 @@
     @$userID = $_SESSION["userID"];
 
     include "security.php";
-    login_guard($_SESSION["userID"]);
-
+    login_guard($_SESSION["login"]);
 
     $sql = "SELECT u.userID, u.cityID, u.districtID, u.name, u.surname, u.password, u.email,
             u.phone, u.address, u.birth_date,u.gender, c.city_name, d.district_name

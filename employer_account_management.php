@@ -4,7 +4,7 @@
     @$companyID = $_SESSION["companyID"];
 
     include "security.php";
-    login_guard($_SESSION["companyID"]); 
+    login_guard($_SESSION["login"]); 
 
     $sql = "SELECT c.companyID, c.cityID, c.districtID, c.company_name, c.website, c.email, c.password, c.phone, c.address, t.city_name, d.district_name
             FROM Companies c 
