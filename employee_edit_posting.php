@@ -23,9 +23,9 @@ if (isset($_GET['id'])) {
 
     require_once 'connect_db.php';
 
-    $sql = "SELECT * FROM Jobs WHERE jobID = $jobID";
+    $sql = "SELECT * FROM Jobs WHERE jobID = ?";
     $params = array($jobID);
-    $result = sqlsrv_query($conn, $sql);
+    $result = sqlsrv_query($conn, $sql, $params);
 
     if ($result === false) {
         die(print_r(sqlsrv_errors(), true));

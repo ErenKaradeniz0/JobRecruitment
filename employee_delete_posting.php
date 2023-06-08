@@ -9,10 +9,10 @@ if (isset($_GET['id'])) {
     
     require_once 'connect_db.php';
 
-    $sql = "DELETE FROM Applications WHERE $jobID = $jobID
-            DELETE FROM Jobs WHERE jobID = $jobID ";
-
-    $result = sqlsrv_query($conn, $sql);
+  $sql = "DELETE FROM Applications WHERE jobID = ?
+            DELETE FROM Jobs WHERE jobID = ? ";
+    $params = array($jobID, $jobID);
+    $result = sqlsrv_query($conn, $sql, $params);
 
     if ($result === false) {
 
