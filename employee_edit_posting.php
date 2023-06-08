@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Job Postings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
 <?php
 session_start();
 include "security.php";
@@ -46,12 +61,7 @@ if (isset($_GET['id'])) {
 } else {
     echo "Invalid job posting ID.";
 }
-?>
+?>    
+</body>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Edit Job Postings</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+</html>

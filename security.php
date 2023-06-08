@@ -3,8 +3,6 @@
 //include "security.php";
 
 function password_chain($password){
-
-    $password=$strval($password);
     
     $min_asci_val = 32;
     $max_asci_val = 126;

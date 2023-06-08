@@ -54,6 +54,8 @@ sqlsrv_close($conn);
         <div class="shape"></div>
     </div>
 
+<div class="table-container">
+  <div class="table-scroll">
     <table>
         <tr>
             <td colspan="6"><button style="margin-top: 0px;" type="button" onclick="redirectToEmployer()">Main page</button></td>
@@ -73,7 +75,8 @@ sqlsrv_close($conn);
         </tr>
         <?php echo $rows; ?>
     </table>
-
+  </div>
+</div>
     <script>
         function redirectToEmployer() {
             window.location.href = 'employer.php';

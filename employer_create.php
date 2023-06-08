@@ -28,7 +28,7 @@
             <option value="Hybrid" style = "color :black;">Hybrid</option>
             <option value="On Site" style = "color :black;">On Site</option>
         </select>
-        <button>Register</button>
+        <button>Create</button>
     </form>
 </body>
 <script>
