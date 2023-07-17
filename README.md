@@ -15,7 +15,7 @@ All transactions also interact with the database. Sessions are held and necessar
 - Job Search: Job seekers can browse and search for job openings based on various criteria such as location, industry, and keywords.
 - Application Submission: Job seekers can submit their applications directly through the platform.
 - Application Tracking: Employers can track and manage received job applications, including reviewing candidate profiles.
-- User Profiles: Users can create and update their profiles, including personal information, work experience, and education.
+- User Profiles: Users can create and update their profiles, including personal information.
 
 ## Technologies Used
 
