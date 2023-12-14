@@ -1,0 +1,7 @@
+add
+C:\xampp\php\php.ini 
+
+extension=php_sqlsrv_82_ts_x64.dll
+extension=php_pdo_sqlsrv_82_ts_x64.dll
+
+C:\xampp\php\ext
