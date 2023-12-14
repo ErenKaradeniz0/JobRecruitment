@@ -1,7 +1,7 @@
 <?php
-     $servername = "DESKTOP-VQPCNFV\SQLSERVER2022";
+     $servername = "EREN";
      $dbUsername = "sa";
-     $dbPassword = "admin123";
+     $dbPassword = "eren";
      $dbName = "JobRecruitmentDB";
 
     $connectionInfo = array("UID" => $dbUsername, "PWD" => $dbPassword, "Database"=> $dbName, "CharacterSet"=>"UTF-8","ReturnDatesAsStrings" => true);
